@@ -1,0 +1,102 @@
+# Sprint Status Tracker
+# generated: 2026-06-05
+# last_updated: 2026-06-05
+# project: Liturgia de las Horas
+# project_key: NOKEY
+# tracking_system: file-system
+# story_location: {project-root}/_bmad-output/implementation-artifacts
+
+# STATUS DEFINITIONS:
+# ==================
+# Epic Status:
+#   - backlog: Epic not yet started
+#   - in-progress: Epic actively being worked on
+#   - done: All stories in epic completed
+#
+# Epic Status Transitions:
+#   - backlog → in-progress: Automatically when first story is created (via create-story)
+#   - in-progress → done: Manually when all stories reach 'done' status
+#
+# Story Status:
+#   - backlog: Story only exists in epic file
+#   - ready-for-dev: Story file created in stories folder
+#   - in-progress: Developer actively working on implementation
+#   - review: Ready for code review (via Dev's code-review workflow)
+#   - done: Story completed
+#
+# Retrospective Status:
+#   - optional: Can be completed but not required
+#   - done: Retrospective has been completed
+#
+# WORKFLOW NOTES:
+# ===============
+# - Epic transitions to 'in-progress' automatically when first story is created
+# - Stories can be worked in parallel if team capacity allows
+# - Developer typically creates next story after previous one is 'done' to incorporate learnings
+# - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
+
+generated: 2026-06-05
+last_updated: 2026-06-05
+project: Liturgia de las Horas
+project_key: NOKEY
+tracking_system: file-system
+story_location: _bmad-output/implementation-artifacts
+
+development_status:
+  # Epic 1: Project Initialization & Infrastructure
+  epic-1: backlog
+  1-1-initialize-react-vite-project-with-github-pages-configuration: backlog
+  1-2-set-up-react-router-v6-with-hashrouter-for-client-side-routing: backlog
+  1-3-implement-liturgicalcontext-and-preferencescontext-providers: backlog
+  1-4-implement-design-token-system-with-css-custom-properties: backlog
+  1-5-create-css-modules-architecture-and-global-styles: backlog
+  1-6-integrate-romcal-library-and-implement-useliturgicalday-hook: backlog
+  1-7-implement-css-variables-for-liturgical-season-colors: backlog
+  1-8-set-up-github-actions-deployment-pipeline: backlog
+  epic-1-retrospective: optional
+
+  # Epic 2: Core Prayer Selection & Experience
+  epic-2: backlog
+  2-1-implement-hourselector-component-with-hour-grid-and-nearest-hour-highlight: backlog
+  2-2-implement-liturgicalheader-component-with-season-driven-theming: backlog
+  2-3-implement-prayercard-component-for-individual-prayer-sections: backlog
+  2-4-implement-hourview-component-with-card-navigation-and-layout: backlog
+  2-5-create-prayer-content-json-structure-for-all-canonical-hours: backlog
+  2-6-implement-content-resolver-utility-with-feast-season-psalter-priority: backlog
+  2-7-implement-keyboard-navigation-and-semantic-html-structure: backlog
+  2-8-implement-info-icons-and-section-tooltips: backlog
+  2-9-verify-liturgical-accuracy-against-canonical-sources: backlog
+  epic-2-retrospective: optional
+
+  # Epic 3: Audio Playback
+  epic-3: backlog
+  3-1-implement-useaudio-hook-for-web-speech-api-integration: backlog
+  3-2-implement-audioplayer-component-with-play-pause-controls: backlog
+  3-3-implement-audio-speed-controls-with-5-speed-options: backlog
+  3-4-wire-audio-player-into-hourview-card-navigation: backlog
+  3-5-implement-graceful-fallback-when-web-speech-api-is-unavailable: backlog
+  3-6-test-audio-accessibility-and-user-experience: backlog
+  epic-3-retrospective: optional
+
+  # Epic 4: Liturgical Calendar & Date Browsing
+  epic-4: backlog
+  4-1-implement-calenderview-component-with-monthly-grid-display: backlog
+  4-2-implement-previous-next-month-navigation: backlog
+  4-3-highlight-sundays-and-liturgically-significant-days-feasts: backlog
+  4-4-display-saint-feast-names-in-day-tooltips: backlog
+  4-5-allow-day-selection-and-navigation-to-hourselector: backlog
+  4-6-test-calendar-accuracy-and-romcal-integration: backlog
+  4-7-implement-responsive-calendar-layout-for-desktop-and-mobile: backlog
+  epic-4-retrospective: optional
+
+  # Epic 5: Personalization & Advanced Accessibility
+  epic-5: backlog
+  5-1-implement-font-size-adjustment-ui-with-localstorage-persistence: backlog
+  5-2-implement-dark-mode-support-with-prefers-color-scheme: backlog
+  5-3-implement-advanced-aria-labels-and-screen-reader-announcements: backlog
+  5-4-implement-form-label-associations-and-input-accessibility: backlog
+  5-5-implement-live-region-announcements-for-dynamic-content: backlog
+  5-6-implement-alt-text-and-aria-hidden-for-images-and-icons: backlog
+  5-7-test-wcag-aa-accessibility-compliance: backlog
+  5-8-implement-keyboard-navigation-enhancements-and-accessibility-polish: backlog
+  epic-5-retrospective: optional
