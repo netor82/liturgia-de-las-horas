@@ -1,0 +1,52 @@
+[
+  {
+    "type": "invitatorio",
+    "title": "Invitatorio",
+    "content": "[Content for Laudes Week 2 - to be populated]"
+  },
+  {
+    "type": "himno",
+    "title": "Himno",
+    "content": "[Content for Laudes Week 2 - to be populated]"
+  },
+  {
+    "type": "salmodia",
+    "title": "Salmodia",
+    "content": "[Content for Laudes Week 2 - to be populated]"
+  },
+  {
+    "type": "lectura-breve",
+    "title": "Lectura Breve",
+    "content": "[Content for Laudes Week 2 - to be populated]"
+  },
+  {
+    "type": "responsorio",
+    "title": "Responsorio",
+    "content": "[Content for Laudes Week 2 - to be populated]"
+  },
+  {
+    "type": "benedictus",
+    "title": "Cántico de Zacarías",
+    "content": "[Content for Laudes Week 2 - to be populated]"
+  },
+  {
+    "type": "preces",
+    "title": "Preces",
+    "content": "[Content for Laudes Week 2 - to be populated]"
+  },
+  {
+    "type": "padre-nuestro",
+    "title": "Padre Nuestro",
+    "content": "Padre nuestro, que estás en el cielo..."
+  },
+  {
+    "type": "oracion",
+    "title": "Oración",
+    "content": "[Content for Laudes Week 2 - to be populated]"
+  },
+  {
+    "type": "conclusion",
+    "title": "Conclusión",
+    "content": "V. El Señor nos bendiga y nos guarde.\nR. Amén."
+  }
+]

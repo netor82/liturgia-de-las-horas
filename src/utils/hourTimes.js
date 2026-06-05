@@ -49,8 +49,8 @@ export function getNearestHour() {
   const now = new Date()
   const hour = now.getHours()
 
-  // Map hour of day to canonical hour
-  if (hour < 9) return 'oficio-de-lectura'
+  // Map hour of day to canonical hour (prefer Laudes at 6am over Oficio)
+  if (hour < 9) return 'laudes'
   if (hour < 12) return 'tercia'
   if (hour < 15) return 'sexta'
   if (hour < 18) return 'nona'
@@ -59,5 +59,8 @@ export function getNearestHour() {
 }
 
 export function getAllHours() {
-  return Object.keys(hourTimes)
+  return Object.entries(hourTimes).map(([key, data]) => ({
+    key,
+    ...data,
+  }))
 }

@@ -33,7 +33,7 @@ export function useLiturgicalDay(dateStr) {
         // Generate calendar for the year
         const calendar = await Romcal.generateCalendar({
           year,
-          locale: 'en',
+          locale: 'GeneralRoman_Es',
         })
         yearCache[year] = calendar
       }

@@ -31,6 +31,14 @@
   opacity: 0.9;
 }
 
+.lightText {
+  color: var(--text-primary);
+}
+
+.darkText {
+  color: var(--white);
+}
+
 @media (prefers-color-scheme: dark) {
   .container {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);

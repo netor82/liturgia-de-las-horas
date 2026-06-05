@@ -1,37 +1,42 @@
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import { LiturgicalContext } from '../contexts/LiturgicalContext'
+import { getAllHours, getNearestHour } from '../utils/hourTimes'
 import styles from './HourSelector.module.css'
 
 export default function HourSelector() {
   const { date } = useParams()
-  const selectedDate = date || new Date().toISOString().split('T')[0]
+  const navigate = useNavigate()
+  const { liturgicalDay } = useContext(LiturgicalContext)
 
-  const hours = [
-    { key: 'oficio-de-lectura', label: 'Oficio de Lectura', time: '6:00 AM' },
-    { key: 'laudes', label: 'Laudes', time: '6:00 AM' },
-    { key: 'tercia', label: 'Tercia', time: '9:00 AM' },
-    { key: 'sexta', label: 'Sexta', time: '12:00 PM' },
-    { key: 'nona', label: 'Nona', time: '3:00 PM' },
-    { key: 'visperas', label: 'Vísperas', time: '6:00 PM' },
-    { key: 'completas', label: 'Completas', time: '9:00 PM' },
-  ]
+  const selectedDate = date || new Date().toISOString().split('T')[0]
+  const hours = getAllHours()
+  const nearestHour = getNearestHour()
+
+  const formatDate = (dateStr) => {
+    const d = new Date(dateStr + 'T00:00:00')
+    return d.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
+  }
 
   return (
     <main className={styles.container}>
-      <h1>{selectedDate}</h1>
-      <div className={styles.grid}>
-        {hours.map((hour) => (
-          <button
-            key={hour.key}
-            className={styles.hourButton}
-            onClick={() => {
-              window.location.hash = `#/${selectedDate}/${hour.key}`
-            }}
-          >
-            <div className={styles.hourLabel}>{hour.label}</div>
-            <div className={styles.hourTime}>{hour.time}</div>
-          </button>
-        ))}
-      </div>
+      <h1>{formatDate(selectedDate)}</h1>
+      {liturgicalDay?.name && <h2>{liturgicalDay.name}</h2>}
+      <nav aria-label="Horas canónicas" className={styles.hoursNav}>
+        <div className={styles.grid}>
+          {hours.map((hour) => (
+            <button
+              key={hour.key}
+              className={`${styles.hourButton} ${nearestHour === hour.key ? styles.active : ''}`}
+              onClick={() => navigate(`/${selectedDate}/${hour.key}`)}
+              aria-label={`Seleccionar ${hour.displayName}, ${hour.time}`}
+            >
+              <div className={styles.hourLabel}>{hour.displayName}</div>
+              <div className={styles.hourTime}>{hour.time}</div>
+            </button>
+          ))}
+        </div>
+      </nav>
     </main>
   )
 }

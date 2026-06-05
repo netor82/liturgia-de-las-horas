@@ -36,7 +36,7 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
 generated: 2026-06-05
-last_updated: 2026-06-05
+last_updated: 2026-06-05 (Epic 2 completed)
 project: Liturgia de las Horas
 project_key: NOKEY
 tracking_system: file-system
@@ -56,15 +56,15 @@ development_status:
   epic-1-retrospective: optional
 
   # Epic 2: Core Prayer Selection & Experience
-  epic-2: backlog
-  2-1-implement-hourselector-component-with-hour-grid-and-nearest-hour-highlight: backlog
-  2-2-implement-liturgicalheader-component-with-season-driven-theming: backlog
-  2-3-implement-prayercard-component-for-individual-prayer-sections: backlog
-  2-4-implement-hourview-component-with-card-navigation-and-layout: backlog
-  2-5-create-prayer-content-json-structure-for-all-canonical-hours: backlog
-  2-6-implement-content-resolver-utility-with-feast-season-psalter-priority: backlog
-  2-7-implement-keyboard-navigation-and-semantic-html-structure: backlog
-  2-8-implement-info-icons-and-section-tooltips: backlog
+  epic-2: done
+  2-1-implement-hourselector-component-with-hour-grid-and-nearest-hour-highlight: done
+  2-2-implement-liturgicalheader-component-with-season-driven-theming: done
+  2-3-implement-prayercard-component-for-individual-prayer-sections: done
+  2-4-implement-hourview-component-with-card-navigation-and-layout: done
+  2-5-create-prayer-content-json-structure-for-all-canonical-hours: done
+  2-6-implement-content-resolver-utility-with-feast-season-psalter-priority: done
+  2-7-implement-keyboard-navigation-and-semantic-html-structure: done
+  2-8-implement-info-icons-and-section-tooltips: done
   2-9-verify-liturgical-accuracy-against-canonical-sources: backlog
   epic-2-retrospective: optional
 

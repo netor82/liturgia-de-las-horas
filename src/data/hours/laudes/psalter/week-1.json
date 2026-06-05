@@ -1,0 +1,52 @@
+[
+  {
+    "type": "invitatorio",
+    "title": "Invitatorio",
+    "content": "Venid, adoremos al Señor,\nque hizo la tierra y el cielo."
+  },
+  {
+    "type": "himno",
+    "title": "Himno",
+    "content": "Dios, Señor nuestro,\ntu gloria llena el cielo,\ny en la tierra tu nombre\nes invocado con fe.\n\nHaz que tu Iglesia cante\nlos milagros del Señor,\ny en el curso de los días\nsienta tu amorosa mano."
+  },
+  {
+    "type": "salmodia",
+    "title": "Salmodia",
+    "content": "Salmo 92: El Señor reina\n\nEl Señor reina, se vistió de majestad,\nse ciñó de poder.\nAfianzó la tierra; no se moverá.\n\nDesde siempre está firme tu trono,\ntú eres eterno.\n\nMucho más firmes que la voz de aguas caudalosas,\nmás que el furor de las olas del mar,\nfirme es el Señor en las alturas."
+  },
+  {
+    "type": "lectura-breve",
+    "title": "Lectura Breve",
+    "content": "De la Primera Epístola de San Pedro (1 P 1, 3-5)\n\nBendito sea Dios, Padre de nuestro Señor Jesucristo, que en su gran misericordia nos ha hecho renacer por la resurrección de Jesucristo a una esperanza viva, a una herencia incorruptible, inmaculada e imperecedera, reservada en el cielo para vosotros."
+  },
+  {
+    "type": "responsorio",
+    "title": "Responsorio",
+    "content": "V. Levántate, gloria de Jerusalén.\nR. Y brilla con la luz de la gloria del Señor."
+  },
+  {
+    "type": "benedictus",
+    "title": "Cántico de Zacarías",
+    "content": "Benedictus Dominus Deus Israel\nquia visitavit et fecit redemptionem\nplebis suae,\net erexit cornu salutis nobis\nin domo David pueri sui,\nsicut locutus est per os\nsanctorum, qui a saeculo sunt,\nprophetarum eius,\nsalute ex inimicis nostris\net de manu omnium, qui oderunt nos."
+  },
+  {
+    "type": "preces",
+    "title": "Preces",
+    "content": "Glorifiquemos a Cristo, el Señor, que fue glorificado en el madero de la cruz, y dirijamos nuestras preces al Padre:\n\n- Que reine tu justicia en la tierra.\n- Que todos los pueblos reconozcan tu gloria, Señor."
+  },
+  {
+    "type": "padre-nuestro",
+    "title": "Padre Nuestro",
+    "content": "Padre nuestro, que estás en el cielo,\nsantificado sea tu nombre;\nvenga a nosotros tu reino;\nhágase tu voluntad en la tierra como en el cielo.\nDanos hoy nuestro pan de cada día;\nperdonanos nuestras deudas,\ncomo nosotros perdonamos a nuestros deudores;\nno nos dejes caer en la tentación,\ny líbranos del mal."
+  },
+  {
+    "type": "oracion",
+    "title": "Oración",
+    "content": "Dios omnipotente, que nos haces comenzar este día con la luz de la fe, concédenos durante su curso obrar siempre conforme a tu voluntad, para que nuestro trabajo sea grato a tus ojos. Por nuestro Señor Jesucristo."
+  },
+  {
+    "type": "conclusion",
+    "title": "Conclusión",
+    "content": "V. El Señor nos bendiga y nos guarde.\nR. Amén."
+  }
+]

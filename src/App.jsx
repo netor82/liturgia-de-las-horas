@@ -36,9 +36,9 @@ function AppContent() {
   return (
     <Routes>
       <Route path="/" element={<HourSelector />} />
+      <Route path="/calendario" element={<CalendarView />} />
       <Route path="/:date" element={<HourSelector />} />
       <Route path="/:date/:hour" element={<HourView />} />
-      <Route path="/calendario" element={<CalendarView />} />
     </Routes>
   )
 }

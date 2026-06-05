@@ -27,6 +27,15 @@
   background-color: var(--warm-gray-mid);
 }
 
+.hourButton.active {
+  background-color: var(--soft-brown);
+  color: var(--white);
+}
+
+.hourButton.active .hourTime {
+  color: var(--white);
+}
+
 .hourLabel {
   font-weight: 600;
   font-size: var(--sans-size-base);

@@ -1,0 +1,11 @@
+[
+  {"type": "invitatorio", "title": "Invitatorio", "content": "[Tercia Week 1 - to be populated]"},
+  {"type": "himno", "title": "Himno", "content": "[Tercia Week 1 - to be populated]"},
+  {"type": "salmodia", "title": "Salmodia", "content": "[Tercia Week 1 - to be populated]"},
+  {"type": "lectura-breve", "title": "Lectura Breve", "content": "[Tercia Week 1 - to be populated]"},
+  {"type": "responsorio", "title": "Responsorio", "content": "[Tercia Week 1 - to be populated]"},
+  {"type": "himno-conclusivo", "title": "Himno Conclusivo", "content": "[Tercia Week 1 - to be populated]"},
+  {"type": "padre-nuestro", "title": "Padre Nuestro", "content": "Padre nuestro..."},
+  {"type": "oracion", "title": "Oración", "content": "[Tercia Week 1 - to be populated]"},
+  {"type": "conclusion", "title": "Conclusión", "content": "V. El Señor nos bendiga y nos guarde.\nR. Amén."}
+]
