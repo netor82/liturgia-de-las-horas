@@ -1,0 +1,49 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--spacing-md);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.hourButton {
+  min-height: var(--button-height);
+  padding: var(--spacing-md);
+  background-color: var(--warm-gray-light);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.2s;
+}
+
+.hourButton:hover {
+  background-color: var(--warm-gray-mid);
+}
+
+.hourLabel {
+  font-weight: 600;
+  font-size: var(--sans-size-base);
+}
+
+.hourTime {
+  font-size: var(--sans-size-sm);
+  color: var(--text-secondary);
+  margin-top: var(--spacing-xs);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: var(--spacing-md);
+  }
+
+  .grid {
+    gap: var(--spacing-sm);
+  }
+}

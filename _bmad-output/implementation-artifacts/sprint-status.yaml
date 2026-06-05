@@ -44,15 +44,15 @@ story_location: _bmad-output/implementation-artifacts
 
 development_status:
   # Epic 1: Project Initialization & Infrastructure
-  epic-1: backlog
-  1-1-initialize-react-vite-project-with-github-pages-configuration: backlog
-  1-2-set-up-react-router-v6-with-hashrouter-for-client-side-routing: backlog
-  1-3-implement-liturgicalcontext-and-preferencescontext-providers: backlog
-  1-4-implement-design-token-system-with-css-custom-properties: backlog
-  1-5-create-css-modules-architecture-and-global-styles: backlog
-  1-6-integrate-romcal-library-and-implement-useliturgicalday-hook: backlog
-  1-7-implement-css-variables-for-liturgical-season-colors: backlog
-  1-8-set-up-github-actions-deployment-pipeline: backlog
+  epic-1: done
+  1-1-initialize-react-vite-project-with-github-pages-configuration: done
+  1-2-set-up-react-router-v6-with-hashrouter-for-client-side-routing: done
+  1-3-implement-liturgicalcontext-and-preferencescontext-providers: done
+  1-4-implement-design-token-system-with-css-custom-properties: done
+  1-5-create-css-modules-architecture-and-global-styles: done
+  1-6-integrate-romcal-library-and-implement-useliturgicalday-hook: done
+  1-7-implement-css-variables-for-liturgical-season-colors: done
+  1-8-set-up-github-actions-deployment-pipeline: done
   epic-1-retrospective: optional
 
   # Epic 2: Core Prayer Selection & Experience

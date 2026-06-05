@@ -1,0 +1,48 @@
+.container {
+  background-color: var(--accent-color);
+  color: var(--text-inverse);
+  padding: var(--spacing-lg);
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.date {
+  font-size: var(--sans-size-base);
+  margin-bottom: var(--spacing-xs);
+}
+
+.saintName {
+  font-size: var(--heading-size-md);
+  font-weight: 600;
+  margin: var(--spacing-sm) 0;
+  font-family: var(--serif-family);
+}
+
+.psaltery {
+  font-size: var(--sans-size-base);
+  margin: var(--spacing-sm) 0;
+}
+
+.cycle {
+  font-size: var(--sans-size-sm);
+  opacity: 0.9;
+}
+
+@media (prefers-color-scheme: dark) {
+  .container {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: var(--spacing-md);
+  }
+
+  .saintName {
+    font-size: var(--heading-size-sm);
+  }
+}

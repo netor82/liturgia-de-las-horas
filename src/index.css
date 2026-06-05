@@ -1,0 +1,179 @@
+/* Global Styles and Design Tokens */
+:root {
+  /* Colors - Light Mode */
+  --cream: #f5f1e8;
+  --white: #fefdf9;
+  --warm-gray-light: #e8e3d8;
+  --warm-gray-mid: #d1cac0;
+  --warm-gray-dark: #8b7d6b;
+  --soft-brown: #8b7d6b;
+
+  /* Text Colors */
+  --text-primary: #2c2a27;
+  --text-secondary: #6b6359;
+  --text-inverse: #f5f1e8;
+
+  /* Accent Colors */
+  --focus-ring: #d4af37;
+  --error: #c62828;
+  --success: #558b2f;
+
+  /* Typography */
+  --serif-family: 'Georgia', 'Garamond', serif;
+  --serif-size-base: 18px;
+  --serif-line-height: 1.8;
+
+  --sans-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --sans-size-base: 16px;
+  --sans-size-sm: 14px;
+  --sans-size-lg: 18px;
+  --sans-line-height: 1.5;
+
+  --heading-size-lg: 32px;
+  --heading-size-md: 24px;
+  --heading-size-sm: 20px;
+
+  /* Spacing Scale */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+
+  /* Components */
+  --card-padding: 24px;
+  --button-height: 48px;
+  --touch-target-min: 44px;
+
+  /* Liturgical Season Colors (default to Ordinary Time) */
+  --accent-color: #2e7d32;
+
+  /* Base font size for scaling */
+  --base-font-size: 16px;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cream: #f5f1e8;
+    --white: #fefdf9;
+    --warm-gray-light: #3a3531;
+    --warm-gray-mid: #4a4440;
+    --warm-gray-dark: #6b6359;
+    --soft-brown: #8b7d6b;
+
+    /* Dark Mode Text */
+    --text-primary: #f5f1e8;
+    --text-secondary: #c4b8a8;
+    --text-inverse: #2c2a27;
+
+    /* Background */
+    --bg-primary: #1a1815;
+    --bg-secondary: #2c2a27;
+  }
+}
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: var(--base-font-size);
+}
+
+body {
+  font-family: var(--sans-family);
+  font-size: var(--sans-size-base);
+  line-height: var(--sans-line-height);
+  color: var(--text-primary);
+  background-color: var(--cream);
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+  }
+}
+
+/* Typography */
+h1 {
+  font-size: var(--heading-size-lg);
+  font-weight: 600;
+}
+
+h2 {
+  font-size: var(--heading-size-md);
+  font-weight: 600;
+}
+
+h3 {
+  font-size: var(--heading-size-sm);
+  font-weight: 600;
+}
+
+p {
+  line-height: var(--sans-line-height);
+}
+
+/* Button Reset */
+button {
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+/* Link Reset */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Focus Styles */
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Font Size Scaling Classes */
+.font-sm {
+  --base-font-size: 14px;
+}
+
+.font-normal {
+  --base-font-size: 16px;
+}
+
+.font-lg {
+  --base-font-size: 18px;
+}
+
+.font-xl {
+  --base-font-size: 20px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
