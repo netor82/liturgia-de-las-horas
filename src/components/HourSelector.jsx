@@ -37,6 +37,23 @@ export default function HourSelector() {
           ))}
         </div>
       </nav>
+
+      <nav className={styles.footer} aria-label="Navegación principal">
+        <button
+          className={styles.navButton}
+          onClick={() => navigate('/calendario')}
+          aria-label="Ir al calendario litúrgico"
+        >
+          📅 Calendario
+        </button>
+        <button
+          className={styles.navButton}
+          onClick={() => navigate('/configuracion')}
+          aria-label="Ir a configuración y accesibilidad"
+        >
+          ⚙️ Configuración
+        </button>
+      </nav>
     </main>
   )
 }
