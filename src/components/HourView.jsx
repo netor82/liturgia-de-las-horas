@@ -4,6 +4,7 @@ import { LiturgicalContext } from '../contexts/LiturgicalContext'
 import { resolveContent } from '../utils/contentResolver'
 import LiturgicalHeader from './LiturgicalHeader'
 import PrayerCard from './PrayerCard'
+import AudioPlayer from './AudioPlayer'
 import styles from './HourView.module.css'
 
 export default function HourView() {
@@ -85,6 +86,7 @@ export default function HourView() {
 
       <div className={styles.cardContainer}>
         <PrayerCard card={currentCard} index={cardIndex} total={cards.length} />
+        <AudioPlayer text={currentCard?.content || ''} onCardChange={cardIndex} />
       </div>
 
       <nav className={styles.navigation} aria-label="Navegación de tarjetas">
