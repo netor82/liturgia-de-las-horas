@@ -69,6 +69,41 @@
   border: none;
 }
 
+.sunday {
+  border: 2px solid var(--warm-gray-mid);
+  font-weight: 600;
+}
+
+.feast {
+  background-color: var(--accent-color);
+  color: var(--text-inverse);
+  font-weight: 600;
+}
+
+.feast:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.tooltip {
+  background-color: var(--warm-gray-dark);
+  color: var(--text-inverse);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: 4px;
+  font-size: var(--sans-size-sm);
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  max-width: 200px;
+  word-wrap: break-word;
+  pointer-events: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .tooltip {
+    background-color: var(--warm-gray-light);
+    color: var(--text-primary);
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   .day {
     background-color: var(--bg-secondary);

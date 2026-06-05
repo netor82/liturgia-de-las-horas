@@ -6,6 +6,7 @@ import { applySeasonColor } from './utils/liturgicalColors'
 import HourSelector from './components/HourSelector'
 import HourView from './components/HourView'
 import CalendarView from './components/CalendarView'
+import SettingsView from './components/SettingsView'
 
 function AppContent() {
   const location = useLocation()
@@ -37,6 +38,7 @@ function AppContent() {
     <Routes>
       <Route path="/" element={<HourSelector />} />
       <Route path="/calendario" element={<CalendarView />} />
+      <Route path="/configuracion" element={<SettingsView />} />
       <Route path="/:date" element={<HourSelector />} />
       <Route path="/:date/:hour" element={<HourView />} />
     </Routes>
