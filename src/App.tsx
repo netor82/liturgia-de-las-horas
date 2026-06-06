@@ -2,7 +2,7 @@ import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-d
 import { useContext, useEffect } from 'react'
 import { LiturgicalContext } from './contexts/LiturgicalContext'
 import { useLiturgicalDay } from './hooks/useLiturgicalDay'
-import { applySeasonColor } from './utils/liturgicalColors'
+import { applyDayColor } from './utils/liturgicalColors'
 import HourSelector from './components/HourSelector'
 import HourView from './components/HourView'
 import CalendarView from './components/CalendarView'
@@ -27,8 +27,8 @@ function AppContent() {
   useEffect(() => {
     if (day) {
       setLiturgicalDay(day)
-      if (day.liturgicalSeason) {
-        applySeasonColor(day.liturgicalSeason)
+      if (day.colors) {
+        applyDayColor(day.colors[0])
       }
     }
   }, [day, setLiturgicalDay])

@@ -74,11 +74,9 @@ status: 'ready-for-implementation'
 
 **Ejemplo de theming (per DESIGN.md):**
 ```css
-:root[data-season="ORDINARY_TIME"]   { --accent-color: #2e7d32; }
-:root[data-season="ADVENT"]          { --accent-color: #6a1b9a; }
-:root[data-season="LENT"]            { --accent-color: #5e35b1; }
-:root[data-season="EASTERTIDE"]      { --accent-color: #d4af37; }
-:root[data-season="CHRISTMASTIDE"]   { --accent-color: #f0f0f0; }
+:root[data-day-color="GREEN"]   { --accent-color: #2e7d32; }
+:root[data-day-color="GOLDEN"]      { --accent-color: #d4af37; }
+:root[data-day-color="WHITE"]   { --accent-color: #f0f0f0; }
 
 :root {
   --cream: #f5f1e8;

@@ -1,10 +1,5 @@
 import { createContext, useReducer, useCallback, ReactNode } from 'react'
-
-interface LiturgicalDay {
-  date: string
-  name?: string
-  liturgicalSeason?: string
-}
+import { LiturgicalDay } from 'romcal'
 
 interface LiturgicalState {
   selectedDate: string

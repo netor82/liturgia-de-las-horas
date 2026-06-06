@@ -1,21 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { Romcal } from 'romcal'
-
-interface Celebration {
-  key: string
-}
-
-interface PsalteryInfo {
-  week: number
-}
-
-interface LiturgicalDay {
-  date: string
-  name?: string
-  liturgicalSeason?: string
-  celebrations?: Celebration[]
-  psaltery?: PsalteryInfo
-}
+import { Romcal, LiturgicalCalendar, LiturgicalDay } from 'romcal'
+import { CostaRica_Es } from '@romcal/calendar.costa-rica'
 
 interface UseLiturgicalDayReturn {
   day: LiturgicalDay | null
@@ -23,7 +8,7 @@ interface UseLiturgicalDayReturn {
   error: string | null
 }
 
-const yearCache: Record<number, LiturgicalDay[]> = {}
+const yearCache: Record<number, LiturgicalCalendar> = {}
 
 export function useLiturgicalDay(dateStr: string): UseLiturgicalDayReturn {
   const [day, setDay] = useState<LiturgicalDay | null>(null)
@@ -49,48 +34,27 @@ export function useLiturgicalDay(dateStr: string): UseLiturgicalDayReturn {
       const year = date.getFullYear()
 
       if (!yearCache[year]) {
-        const calendar = await Romcal.calendarFor({
-          year,
-          country: 'costaRica',
-          locale: 'es',
-        })
+        const romcal = new Romcal({ localizedCalendar: CostaRica_Es })
+        const calendar = await romcal.generateCalendar(year);
         yearCache[year] = calendar
       }
 
       const calendar = yearCache[year]
-
-      const month = (date.getMonth() + 1).toString().padStart(2, '0')
-      const dayNum = date.getDate().toString().padStart(2, '0')
-      const dateKey = `${year}-${month}-${dayNum}`
-
-      const foundDay = calendar.find((d) => {
-        const dDate = new Date(d.date)
-        const dDateStr = dDate.toISOString().split('T')[0]
-        return dDateStr === dateKey
-      })
+      const foundDay = calendar[dateStr][0]
 
       if (foundDay) {
+        console.info('date found', dateStr, CostaRica_Es, foundDay)
         setDay(foundDay)
         setError(null)
       } else {
-        setDay({
-          date: dateStr,
-          name: 'Weekday',
-          liturgicalSeason: 'ORDINARY_TIME',
-          psaltery: { week: 1 },
-        })
-        setError(null)
+        setDay(null)
+        setError(`Date ${dateStr} not found`)
       }
     } catch (err) {
       if (err instanceof Error && err.name !== 'AbortError') {
         console.error('Error loading liturgical day:', err)
+        setDay(null)
         setError(err.message)
-        setDay({
-          date: dateStr,
-          name: 'Weekday',
-          liturgicalSeason: 'ORDINARY_TIME',
-          psaltery: { week: 1 },
-        })
       }
     } finally {
       setLoading(false)

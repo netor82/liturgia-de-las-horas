@@ -1,6 +1,5 @@
 import { useContext } from 'react'
 import { LiturgicalContext } from '../contexts/LiturgicalContext'
-import { getSeasonNameDisplay } from '../utils/liturgicalColors'
 import styles from './LiturgicalHeader.module.css'
 
 interface Cycles {
@@ -15,7 +14,7 @@ export default function LiturgicalHeader() {
     throw new Error('LiturgicalContext must be provided')
   }
 
-  const { liturgicalDay, selectedDate } = liturgicalCtx
+  const { liturgicalDay } = liturgicalCtx
 
   if (!liturgicalDay) {
     return null
@@ -32,10 +31,10 @@ export default function LiturgicalHeader() {
   }
 
   const getPsalterDisplay = () => {
-    const week = liturgicalDay.psaltery?.week || 1
-    const season = liturgicalDay.liturgicalSeason || 'ORDINARY_TIME'
-    const seasonName = getSeasonNameDisplay(season)
-    return `Semana ${week} del ${seasonName}`
+    const psalter = liturgicalDay?.cycles?.psalterWeek[5] ?? 1
+    const week = liturgicalDay?.calendar?.weekOfSeason ?? 1
+    const seasonName = liturgicalDay.seasonNames[0]
+    return `${seasonName}. Semana ${week}. Salterio ${psalter}`
   }
 
   const getCycleDisplay = () => {
@@ -53,7 +52,7 @@ export default function LiturgicalHeader() {
     <header
       className={`${styles.container} ${isDarkSeason ? styles.darkText : styles.lightText}`}
     >
-      <div className={styles.date}>{formatDate(selectedDate)}</div>
+      <div className={styles.date}>{formatDate(liturgicalDay.date)}</div>
       <div className={styles.saintName}>{liturgicalDay.name}</div>
       <div className={styles.psaltery}>{getPsalterDisplay()}</div>
       {getCycleDisplay() && <div className={styles.cycle}>{getCycleDisplay()}</div>}

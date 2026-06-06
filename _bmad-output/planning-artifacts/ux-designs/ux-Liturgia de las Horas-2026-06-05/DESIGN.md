@@ -98,7 +98,7 @@ components:
 
 ### Liturgical Season Accents
 
-Each liturgical season carries its traditional Church color. CSS `data-season` attribute on `<html>` root drives the current season's accent:
+Each liturgical season carries its traditional Church color. CSS `data-day-color` attribute on `<html>` root drives the current season's accent:
 
 | Season | Color | Usage |
 |--------|-------|-------|
@@ -110,10 +110,10 @@ Each liturgical season carries its traditional Church color. CSS `data-season` a
 
 **Implementation:**
 ```css
-:root[data-season="ORDINARY_TIME"] {
+:root[data-day-color="GREEN"] {
   --accent-color: #2e7d32;
 }
-:root[data-season="ADVENT"] {
+:root[data-day-color="PURPLE"] {
   --accent-color: #6a1b9a;
 }
 /* etc. */

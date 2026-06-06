@@ -46,8 +46,8 @@
   --button-height: 48px;
   --touch-target-min: 44px;
 
-  /* Liturgical Season Colors (default to Ordinary Time) */
-  --accent-color: #2e7d32;
+  /* Liturgical Season Color (default to Ordinary Time) */
+  --accent-color: #007A33;
 
   /* Base font size for scaling */
   --base-font-size: 16px;
@@ -72,6 +72,35 @@
     --bg-primary: #1a1815;
     --bg-secondary: #2c2a27;
   }
+}
+
+/* Liturgical Day Colors */
+:root[data-day-color="RED"] {
+  --accent-color: #C8102E;
+}
+
+:root[data-day-color="ROSE"] {
+  --accent-color: #F7C6C7;
+}
+
+:root[data-day-color="PURPLE"] {
+  --accent-color: #6A0DAD;
+}
+
+:root[data-day-color="GREEN"] {
+  --accent-color: #007A33;
+}
+
+:root[data-day-color="WHITE"] {
+  --accent-color: #FFFFFF;
+}
+
+:root[data-day-color="GOLD"] {
+  --accent-color: #FFD700;
+}
+
+:root[data-day-color="BLACK"] {
+  --accent-color: #000000;
 }
 
 /* Reset and Base Styles */
