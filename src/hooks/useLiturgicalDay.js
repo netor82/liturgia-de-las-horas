@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
-import * as Romcal from 'romcal'
+import { Romcal } from 'romcal';
 
 // Cache for liturgical data by year to avoid redundant computation
 const yearCache = {}
@@ -31,28 +31,26 @@ export function useLiturgicalDay(dateStr) {
       // Check cache first
       if (!yearCache[year]) {
         // Generate calendar for the year
-        const calendar = await Romcal.generateCalendar({
-          year,
-          locale: 'GeneralRoman_Es',
-        })
+        const romCal = new Romcal()
+
+        const calendar = await romCal.generateCalendar(year)
         yearCache[year] = calendar
       }
 
       const calendar = yearCache[year]
+      const foundDay = calendar[dateStr][0]
 
-      // Find the day matching the date
-      const month = (date.getMonth() + 1).toString().padStart(2, '0')
-      const dayNum = date.getDate().toString().padStart(2, '0')
-      const dateKey = `${year}-${month}-${dayNum}`
-
-      const foundDay = calendar.find((d) => {
-        const dDate = new Date(d.date)
-        const dDateStr = dDate.toISOString().split('T')[0]
-        return dDateStr === dateKey
-      })
 
       if (foundDay) {
-        setDay(foundDay)
+        console.log(foundDay)
+        const extractedDay = {
+          date: dateStr,
+          name: 'Weekday',
+          liturgicalSeason: foundDay.seasons[0],
+          psaltery: { week: +foundDay.cycles.psalterWeek[5] }
+        }
+        setDay(extractedDay)
+        console.log(extractedDay)
         setError(null)
       } else {
         // Fallback: create a generic day
