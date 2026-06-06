@@ -1,41 +1,11 @@
-import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
-import { useContext, useEffect } from 'react'
-import { LiturgicalContext } from './contexts/LiturgicalContext'
-import { useLiturgicalDay } from './hooks/useLiturgicalDay'
-import { applyDayColor } from './utils/liturgicalColors'
+import { HashRouter as Router, Routes, Route } from 'react-router-dom'
+
 import HourSelector from './components/HourSelector'
 import HourView from './components/HourView'
 import CalendarView from './components/CalendarView'
 import SettingsView from './components/SettingsView'
 
 function AppContent() {
-  const location = useLocation()
-  const liturgicalCtx = useContext(LiturgicalContext)
-
-  if (!liturgicalCtx) {
-    throw new Error('LiturgicalContext must be provided')
-  }
-
-  const { setLiturgicalDay } = liturgicalCtx
-
-  const pathSegments = location.pathname.split('/').filter(Boolean)
-  const dateFromUrl = pathSegments[0] || new Date().toISOString().split('T')[0]
-  const hourFromUrl = pathSegments[1] || null
-
-  const { day, loading } = useLiturgicalDay(dateFromUrl)
-
-  useEffect(() => {
-    if (day) {
-      setLiturgicalDay(day)
-      if (day.colors) {
-        applyDayColor(day.colors[0])
-      }
-    }
-  }, [day, setLiturgicalDay])
-
-  if (loading) {
-    return <div style={{ padding: '2rem', textAlign: 'center' }}>Loading liturgical data...</div>
-  }
 
   return (
     <Routes>

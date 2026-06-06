@@ -1,6 +1,5 @@
 .container {
-  border-color: var(--accent-color);
-  border: solid var(--spacing-xs);
+  border: solid var(--spacing-xs) var(--accent-color);
   border-radius: 4px;
   background-color: var(--bg-primary);
   color: var(--text-inverse);

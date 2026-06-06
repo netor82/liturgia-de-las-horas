@@ -33,11 +33,9 @@ export default function CalendarView() {
       for (let day = 1; day <= daysInMonth; day++) {
         const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`
         try {
-          // Note: This is calling a hook in a loop which is not ideal, but preserving original behavior
-          // A better approach would be to move this logic to a proper async function
-          const result = useLiturgicalDay(dateStr)
-          if (result && result.day) {
-            data[day] = result.day
+          const result = await useLiturgicalDay(dateStr)
+          if (result) {
+            data[day] = result
           }
         } catch (error) {
           console.warn(`Error fetching liturgical data for ${dateStr}:`, error)

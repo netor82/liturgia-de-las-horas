@@ -1,7 +1,8 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { LiturgicalContext } from '../contexts/LiturgicalContext'
 import { getAllHours, getNearestHour } from '../utils/hourTimes'
+import { useLiturgicalDay } from '../hooks/useLiturgicalDay'
 import styles from './HourSelector.module.css'
 
 export default function HourSelector() {
@@ -13,8 +14,19 @@ export default function HourSelector() {
     throw new Error('LiturgicalContext must be provided')
   }
 
-  const { liturgicalDay } = liturgicalCtx
+  const { liturgicalDay, setLiturgicalDay, setDate, loading, setLoading } = liturgicalCtx
   const selectedDate = date || new Date().toISOString().split('T')[0]
+
+  useEffect(() => {
+    useLiturgicalDay(selectedDate).then((day)=> {
+      if (day) {
+        setLiturgicalDay(day)
+        setLoading(false)
+      }
+      console.log('selected date: ', selectedDate, day)
+      setDate(selectedDate)
+    });
+  }, [selectedDate, setDate])
   const hours = getAllHours()
   const nearestHour = getNearestHour()
 
@@ -27,6 +39,10 @@ export default function HourSelector() {
       year: 'numeric',
     })
   }
+  
+    if (loading) {
+      return <div style={{ padding: '2rem', textAlign: 'center' }}>Cargando...</div>
+    }
 
   return (
     <main className={styles.container}>
