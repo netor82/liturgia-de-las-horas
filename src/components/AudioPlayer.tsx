@@ -2,26 +2,29 @@ import { useEffect, useRef, useState } from 'react'
 import { useAudio } from '../hooks/useAudio'
 import styles from './AudioPlayer.module.css'
 
+interface AudioPlayerProps {
+  text: string
+  onCardChange: number
+}
+
 const SPEED_OPTIONS = [0.75, 1, 1.25, 1.5, 2]
 
-export default function AudioPlayer({ text, onCardChange }) {
-  const { isPlaying, isPaused, currentSpeed, isSupported, play, pause, stop, setSpeed } = useAudio()
+export default function AudioPlayer({ text, onCardChange }: AudioPlayerProps) {
+  const { isPlaying, isPaused, currentSpeed, isSupported, play, pause, stop, setSpeed } =
+    useAudio()
   const textRef = useRef(text)
   const [announcement, setAnnouncement] = useState('')
 
-  // Update text reference when text prop changes
   useEffect(() => {
     textRef.current = text
   }, [text])
 
-  // Stop audio when card changes
   useEffect(() => {
     return () => {
       stop()
     }
   }, [text, stop])
 
-  // Announce audio state changes to screen readers
   useEffect(() => {
     if (isPlaying && !isPaused) {
       setAnnouncement(`Reproducción de audio iniciada a velocidad ${currentSpeed}x`)
@@ -42,14 +45,12 @@ export default function AudioPlayer({ text, onCardChange }) {
     }
   }
 
-  const handleSpeedChange = (e) => {
+  const handleSpeedChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newSpeed = parseFloat(e.target.value)
     setSpeed(newSpeed)
 
-    // If audio is playing, restart with new speed
     if (isPlaying) {
       stop()
-      // Small delay to ensure speech synthesis is ready
       setTimeout(() => {
         play(textRef.current)
       }, 50)
@@ -64,10 +65,6 @@ export default function AudioPlayer({ text, onCardChange }) {
       return 'Reanudar'
     }
     return 'Escuchar'
-  }
-
-  const getSpeedLabel = () => {
-    return `${currentSpeed}x`
   }
 
   return (
@@ -103,7 +100,6 @@ export default function AudioPlayer({ text, onCardChange }) {
         </div>
       </div>
 
-      {/* Live region for screen reader announcements */}
       <div
         role="region"
         aria-live="polite"

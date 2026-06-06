@@ -5,17 +5,27 @@ import { getAllHours, getNearestHour } from '../utils/hourTimes'
 import styles from './HourSelector.module.css'
 
 export default function HourSelector() {
-  const { date } = useParams()
+  const { date } = useParams<{ date?: string }>()
   const navigate = useNavigate()
-  const { liturgicalDay } = useContext(LiturgicalContext)
+  const liturgicalCtx = useContext(LiturgicalContext)
 
+  if (!liturgicalCtx) {
+    throw new Error('LiturgicalContext must be provided')
+  }
+
+  const { liturgicalDay } = liturgicalCtx
   const selectedDate = date || new Date().toISOString().split('T')[0]
   const hours = getAllHours()
   const nearestHour = getNearestHour()
 
-  const formatDate = (dateStr) => {
+  const formatDate = (dateStr: string) => {
     const d = new Date(dateStr + 'T00:00:00')
-    return d.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
+    return d.toLocaleDateString('es-ES', {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    })
   }
 
   return (

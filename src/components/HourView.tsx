@@ -7,17 +7,28 @@ import PrayerCard from './PrayerCard'
 import AudioPlayer from './AudioPlayer'
 import styles from './HourView.module.css'
 
-export default function HourView() {
-  const { date, hour } = useParams()
-  const navigate = useNavigate()
-  const { liturgicalDay } = useContext(LiturgicalContext)
+interface ContentCard {
+  type: string
+  title: string
+  content: string
+}
 
-  const [cards, setCards] = useState([])
+export default function HourView() {
+  const { date, hour } = useParams<{ date?: string; hour?: string }>()
+  const navigate = useNavigate()
+  const liturgicalCtx = useContext(LiturgicalContext)
+
+  if (!liturgicalCtx) {
+    throw new Error('LiturgicalContext must be provided')
+  }
+
+  const { liturgicalDay } = liturgicalCtx
+
+  const [cards, setCards] = useState<ContentCard[]>([])
   const [cardIndex, setCardIndex] = useState(0)
   const [loading, setLoading] = useState(true)
   const [liveRegion, setLiveRegion] = useState('')
 
-  // Load prayer content
   useEffect(() => {
     const loadContent = async () => {
       setLoading(true)
@@ -44,7 +55,9 @@ export default function HourView() {
     if (cardIndex > 0) {
       const newIndex = cardIndex - 1
       setCardIndex(newIndex)
-      setLiveRegion(`${cards[newIndex].title}, tarjeta ${newIndex + 1} de ${cards.length}`)
+      setLiveRegion(
+        `${cards[newIndex].title}, tarjeta ${newIndex + 1} de ${cards.length}`
+      )
       window.scrollTo(0, 0)
     }
   }
@@ -53,7 +66,9 @@ export default function HourView() {
     if (cardIndex < cards.length - 1) {
       const newIndex = cardIndex + 1
       setCardIndex(newIndex)
-      setLiveRegion(`${cards[newIndex].title}, tarjeta ${newIndex + 1} de ${cards.length}`)
+      setLiveRegion(
+        `${cards[newIndex].title}, tarjeta ${newIndex + 1} de ${cards.length}`
+      )
       window.scrollTo(0, 0)
     }
   }
@@ -119,7 +134,6 @@ export default function HourView() {
         </button>
       </div>
 
-      {/* Live region for screen readers */}
       <div
         role="region"
         aria-live="polite"

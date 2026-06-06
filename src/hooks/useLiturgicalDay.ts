@@ -1,14 +1,35 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { Romcal } from 'romcal';
+import { Romcal } from 'romcal'
 
-// Cache for liturgical data by year to avoid redundant computation
-const yearCache = {}
+interface Celebration {
+  key: string
+}
 
-export function useLiturgicalDay(dateStr) {
-  const [day, setDay] = useState(null)
+interface PsalteryInfo {
+  week: number
+}
+
+interface LiturgicalDay {
+  date: string
+  name?: string
+  liturgicalSeason?: string
+  celebrations?: Celebration[]
+  psaltery?: PsalteryInfo
+}
+
+interface UseLiturgicalDayReturn {
+  day: LiturgicalDay | null
+  loading: boolean
+  error: string | null
+}
+
+const yearCache: Record<number, LiturgicalDay[]> = {}
+
+export function useLiturgicalDay(dateStr: string): UseLiturgicalDayReturn {
+  const [day, setDay] = useState<LiturgicalDay | null>(null)
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-  const abortControllerRef = useRef(null)
+  const [error, setError] = useState<string | null>(null)
+  const abortControllerRef = useRef<AbortController | null>(null)
 
   const getLiturgicalDay = useCallback(async () => {
     if (!dateStr) {
@@ -17,7 +38,6 @@ export function useLiturgicalDay(dateStr) {
       return
     }
 
-    // Cancel previous requests
     if (abortControllerRef.current) {
       abortControllerRef.current.abort()
     }
@@ -28,32 +48,31 @@ export function useLiturgicalDay(dateStr) {
       const date = new Date(dateStr)
       const year = date.getFullYear()
 
-      // Check cache first
       if (!yearCache[year]) {
-        // Generate calendar for the year
-        const romCal = new Romcal()
-
-        const calendar = await romCal.generateCalendar(year)
+        const calendar = await Romcal.calendarFor({
+          year,
+          country: 'costaRica',
+          locale: 'es',
+        })
         yearCache[year] = calendar
       }
 
       const calendar = yearCache[year]
-      const foundDay = calendar[dateStr][0]
 
+      const month = (date.getMonth() + 1).toString().padStart(2, '0')
+      const dayNum = date.getDate().toString().padStart(2, '0')
+      const dateKey = `${year}-${month}-${dayNum}`
+
+      const foundDay = calendar.find((d) => {
+        const dDate = new Date(d.date)
+        const dDateStr = dDate.toISOString().split('T')[0]
+        return dDateStr === dateKey
+      })
 
       if (foundDay) {
-        console.log(foundDay)
-        const extractedDay = {
-          date: dateStr,
-          name: 'Weekday',
-          liturgicalSeason: foundDay.seasons[0],
-          psaltery: { week: +foundDay.cycles.psalterWeek[5] }
-        }
-        setDay(extractedDay)
-        console.log(extractedDay)
+        setDay(foundDay)
         setError(null)
       } else {
-        // Fallback: create a generic day
         setDay({
           date: dateStr,
           name: 'Weekday',
@@ -63,10 +82,9 @@ export function useLiturgicalDay(dateStr) {
         setError(null)
       }
     } catch (err) {
-      if (err.name !== 'AbortError') {
+      if (err instanceof Error && err.name !== 'AbortError') {
         console.error('Error loading liturgical day:', err)
         setError(err.message)
-        // Set fallback day
         setDay({
           date: dateStr,
           name: 'Weekday',

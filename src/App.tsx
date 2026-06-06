@@ -10,20 +10,23 @@ import SettingsView from './components/SettingsView'
 
 function AppContent() {
   const location = useLocation()
-  const { setLiturgicalDay } = useContext(LiturgicalContext)
+  const liturgicalCtx = useContext(LiturgicalContext)
 
-  // Extract date from URL if present
+  if (!liturgicalCtx) {
+    throw new Error('LiturgicalContext must be provided')
+  }
+
+  const { setLiturgicalDay } = liturgicalCtx
+
   const pathSegments = location.pathname.split('/').filter(Boolean)
   const dateFromUrl = pathSegments[0] || new Date().toISOString().split('T')[0]
   const hourFromUrl = pathSegments[1] || null
 
   const { day, loading } = useLiturgicalDay(dateFromUrl)
 
-  // Update context and apply season color when day changes
   useEffect(() => {
     if (day) {
       setLiturgicalDay(day)
-      // Apply season color if available
       if (day.liturgicalSeason) {
         applySeasonColor(day.liturgicalSeason)
       }

@@ -1,22 +1,31 @@
 import { useState, useEffect, useRef } from 'react'
 
-export function useAudio() {
+interface UseAudioReturn {
+  isPlaying: boolean
+  isPaused: boolean
+  currentSpeed: number
+  isSupported: boolean
+  play: (text: string) => void
+  pause: () => void
+  stop: () => void
+  setSpeed: (speed: number) => void
+}
+
+export function useAudio(): UseAudioReturn {
   const [isPlaying, setIsPlaying] = useState(false)
   const [isPaused, setIsPaused] = useState(false)
   const [currentSpeed, setCurrentSpeed] = useState(1)
   const [isSupported, setIsSupported] = useState(false)
-  const utteranceRef = useRef(null)
+  const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null)
 
   useEffect(() => {
-    // Check if Web Speech API is available
     const supported = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window
     setIsSupported(supported)
   }, [])
 
-  const play = (text) => {
+  const play = (text: string) => {
     if (!isSupported) return
 
-    // Stop any existing speech
     window.speechSynthesis.cancel()
 
     const utterance = new SpeechSynthesisUtterance(text)
@@ -62,10 +71,8 @@ export function useAudio() {
     setIsPaused(false)
   }
 
-  const setSpeed = (speed) => {
+  const setSpeed = (speed: number) => {
     setCurrentSpeed(speed)
-    // If speech is currently playing, we need to restart it with new speed
-    // This will be handled by the component using the hook
   }
 
   return {

@@ -2,7 +2,13 @@ import { useContext } from 'react'
 import { PreferencesContext } from '../contexts/PreferencesContext'
 import styles from './FontSizeSelector.module.css'
 
-const FONT_SIZES = [
+interface FontSizeOption {
+  value: 'small' | 'normal' | 'large' | 'xl'
+  label: string
+  description: string
+}
+
+const FONT_SIZES: FontSizeOption[] = [
   { value: 'small', label: 'Pequeño', description: '14px' },
   { value: 'normal', label: 'Normal', description: '16px' },
   { value: 'large', label: 'Grande', description: '18px' },
@@ -10,9 +16,15 @@ const FONT_SIZES = [
 ]
 
 export default function FontSizeSelector() {
-  const { fontSize, setFontSize } = useContext(PreferencesContext)
+  const preferencesCtx = useContext(PreferencesContext)
 
-  const handleFontSizeChange = (newSize) => {
+  if (!preferencesCtx) {
+    throw new Error('PreferencesContext must be provided')
+  }
+
+  const { fontSize, setFontSize } = preferencesCtx
+
+  const handleFontSizeChange = (newSize: 'small' | 'normal' | 'large' | 'xl') => {
     setFontSize(newSize)
   }
 
@@ -30,7 +42,9 @@ export default function FontSizeSelector() {
                 name="font-size"
                 value={size.value}
                 checked={fontSize === size.value}
-                onChange={(e) => handleFontSizeChange(e.target.value)}
+                onChange={(e) =>
+                  handleFontSizeChange(e.target.value as 'small' | 'normal' | 'large' | 'xl')
+                }
                 className={styles.input}
                 aria-label={`${size.label} (${size.description})`}
               />
@@ -43,7 +57,6 @@ export default function FontSizeSelector() {
         </div>
       </fieldset>
 
-      {/* Live region for screen reader announcements */}
       <div
         role="region"
         aria-live="polite"

@@ -1,5 +1,9 @@
-// Map liturgical season names to accent colors and data attributes
-export const seasonColorMap = {
+interface SeasonColor {
+  hex: string
+  name: string
+}
+
+const seasonColorMap: Record<string, SeasonColor> = {
   ORDINARY_TIME: {
     hex: '#2e7d32',
     name: 'ordinary-time',
@@ -22,23 +26,20 @@ export const seasonColorMap = {
   },
 }
 
-export function getSeasonColor(seasonName) {
+export function getSeasonColor(seasonName: string): SeasonColor {
   return seasonColorMap[seasonName] || seasonColorMap.ORDINARY_TIME
 }
 
-export function applySeasonColor(seasonName) {
+export function applySeasonColor(seasonName: string): void {
   const season = getSeasonColor(seasonName)
   const root = document.documentElement
 
-  // Set data-season attribute
   root.setAttribute('data-season', season.name)
-
-  // Set CSS variable for dynamic coloring
   root.style.setProperty('--accent-color', season.hex)
 }
 
-export function getSeasonNameDisplay(seasonName) {
-  const nameMap = {
+export function getSeasonNameDisplay(seasonName: string): string {
+  const nameMap: Record<string, string> = {
     ORDINARY_TIME: 'Tiempo Ordinario',
     ADVENT: 'Adviento',
     CHRISTMASTIDE: 'Navidad',

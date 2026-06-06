@@ -6,7 +6,13 @@ import styles from './SettingsView.module.css'
 
 export default function SettingsView() {
   const navigate = useNavigate()
-  const { prefersDarkMode } = useContext(PreferencesContext)
+  const preferencesCtx = useContext(PreferencesContext)
+
+  if (!preferencesCtx) {
+    throw new Error('PreferencesContext must be provided')
+  }
+
+  const { prefersDarkMode } = preferencesCtx
 
   return (
     <main className={styles.container}>
@@ -30,7 +36,8 @@ export default function SettingsView() {
           <div className={styles.settingInfo}>
             <h3>Tema</h3>
             <p>
-              El modo oscuro/claro se adapta automáticamente a tu preferencia del sistema operativo.
+              El modo oscuro/claro se adapta automáticamente a tu preferencia del sistema
+              operativo.
               {prefersDarkMode ? ' Actualmente: Modo Oscuro' : ' Actualmente: Modo Claro'}
             </p>
           </div>
@@ -56,17 +63,17 @@ export default function SettingsView() {
           <div className={styles.settingInfo}>
             <h3>Lector de Pantalla</h3>
             <p>
-              Esta aplicación es totalmente compatible con lectores de pantalla. Todos los elementos
-              interactivos tienen etiquetas descriptivas y los cambios dinámicos se anuncian
-              automáticamente.
+              Esta aplicación es totalmente compatible con lectores de pantalla. Todos los
+              elementos interactivos tienen etiquetas descriptivas y los cambios dinámicos se
+              anuncian automáticamente.
             </p>
           </div>
 
           <div className={styles.settingInfo}>
             <h3>Audio</h3>
             <p>
-              Puedes reproducir la oración a través de síntesis de voz en navegadores modernos. Los
-              controles de audio incluyen opciones de velocidad (0.75x a 2x).
+              Puedes reproducir la oración a través de síntesis de voz en navegadores modernos.
+              Los controles de audio incluyen opciones de velocidad (0.75x a 2x).
             </p>
           </div>
         </section>
@@ -75,8 +82,8 @@ export default function SettingsView() {
           <h2>Acerca de</h2>
           <div className={styles.settingInfo}>
             <p>
-              <strong>Liturgia de las Horas</strong> es una aplicación contemplativa para rezar la
-              Liturgia de las Horas en español.
+              <strong>Liturgia de las Horas</strong> es una aplicación contemplativa para rezar
+              la Liturgia de las Horas en español.
             </p>
             <p>
               Detalles técnicos:

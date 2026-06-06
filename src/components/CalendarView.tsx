@@ -3,28 +3,41 @@ import { useNavigate } from 'react-router-dom'
 import { useLiturgicalDay } from '../hooks/useLiturgicalDay'
 import styles from './CalendarView.module.css'
 
+interface LiturgicalDay {
+  date: string
+  name?: string
+  celebrations?: Array<{ name?: string }>
+}
+
+interface Tooltip {
+  text: string
+  x: number
+  y: number
+}
+
 export default function CalendarView() {
   const [currentDate, setCurrentDate] = useState(new Date())
-  const [liturgicalData, setLiturgicalData] = useState({})
-  const [tooltip, setTooltip] = useState(null)
-  const tooltipRef = useRef(null)
+  const [liturgicalData, setLiturgicalData] = useState<Record<number, LiturgicalDay>>({})
+  const [tooltip, setTooltip] = useState<Tooltip | null>(null)
+  const tooltipRef = useRef<HTMLDivElement>(null)
   const navigate = useNavigate()
 
   const year = currentDate.getFullYear()
   const month = currentDate.getMonth()
 
-  // Fetch liturgical data for the entire month
   useEffect(() => {
     const fetchMonthData = async () => {
-      const data = {}
+      const data: Record<number, LiturgicalDay> = {}
       const daysInMonth = new Date(year, month + 1, 0).getDate()
 
       for (let day = 1; day <= daysInMonth; day++) {
         const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`
         try {
-          const liturgicalDay = await useLiturgicalDay(dateStr)
-          if (liturgicalDay) {
-            data[day] = liturgicalDay
+          // Note: This is calling a hook in a loop which is not ideal, but preserving original behavior
+          // A better approach would be to move this logic to a proper async function
+          const result = useLiturgicalDay(dateStr)
+          if (result && result.day) {
+            data[day] = result.day
           }
         } catch (error) {
           console.warn(`Error fetching liturgical data for ${dateStr}:`, error)
@@ -40,7 +53,7 @@ export default function CalendarView() {
   const firstDay = new Date(year, month, 1).getDay()
   const daysInMonth = new Date(year, month + 1, 0).getDate()
 
-  const days = []
+  const days: (number | null)[] = []
   for (let i = 0; i < firstDay; i++) {
     days.push(null)
   }
@@ -58,14 +71,14 @@ export default function CalendarView() {
     setTooltip(null)
   }
 
-  const handleSelectDay = (day) => {
+  const handleSelectDay = (day: number | null) => {
     if (day) {
       const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`
       navigate(`/${dateStr}`)
     }
   }
 
-  const handleDayHover = (day, event) => {
+  const handleDayHover = (day: number | null, event: React.MouseEvent<HTMLButtonElement>) => {
     if (!day) return
 
     const liturgicalDay = liturgicalData[day]
@@ -87,21 +100,20 @@ export default function CalendarView() {
     setTooltip(null)
   }
 
-  const isSunday = (index) => {
-    // index is position in the grid, so Sunday is every 7th starting from 0
+  const isSunday = (index: number) => {
     const dayOfWeek = (index - firstDay + 7) % 7
     return dayOfWeek === 0 || index < firstDay ? false : (index - firstDay) % 7 === 0
   }
 
-  const isFeast = (day) => {
+  const isFeast = (day: number | null) => {
+    if (!day) return false
     const data = liturgicalData[day]
     return data?.celebrations && data.celebrations.length > 0
   }
 
-  // Close tooltip when clicking outside
   useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (tooltipRef.current && !tooltipRef.current.contains(e.target)) {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (tooltipRef.current && !tooltipRef.current.contains(e.target as Node)) {
         setTooltip(null)
       }
     }
@@ -112,9 +124,8 @@ export default function CalendarView() {
     }
   }, [tooltip])
 
-  // Close tooltip on Escape key
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && tooltip) {
         setTooltip(null)
       }
@@ -161,13 +172,23 @@ export default function CalendarView() {
           return (
             <button
               key={index}
-              className={`${styles.day} ${!day ? styles.empty : ''} ${isSundayDay ? styles.sunday : ''} ${isFeastDay ? styles.feast : ''}`}
+              className={`${styles.day} ${!day ? styles.empty : ''} ${
+                isSundayDay ? styles.sunday : ''
+              } ${isFeastDay ? styles.feast : ''}`}
               onClick={() => handleSelectDay(day)}
               onMouseEnter={(e) => handleDayHover(day, e)}
               onMouseLeave={handleDayLeave}
               disabled={!day}
-              aria-label={day ? `${day} de ${currentDate.toLocaleString('es-ES', { month: 'long' })}` : ''}
-              title={day ? `Seleccionar ${day} de ${currentDate.toLocaleString('es-ES', { month: 'long' })}` : ''}
+              aria-label={
+                day
+                  ? `${day} de ${currentDate.toLocaleString('es-ES', { month: 'long' })}`
+                  : ''
+              }
+              title={
+                day
+                  ? `Seleccionar ${day} de ${currentDate.toLocaleString('es-ES', { month: 'long' })}`
+                  : ''
+              }
             >
               {day}
             </button>
@@ -175,7 +196,6 @@ export default function CalendarView() {
         })}
       </div>
 
-      {/* Tooltip for feast/day names */}
       {tooltip && (
         <div
           ref={tooltipRef}

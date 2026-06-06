@@ -1,7 +1,19 @@
 import { useState, useRef, useEffect } from 'react'
 import styles from './PrayerCard.module.css'
 
-const SECTION_DESCRIPTIONS = {
+interface ContentCard {
+  type: string
+  title: string
+  content: string
+}
+
+interface PrayerCardProps {
+  card: ContentCard | null
+  index?: number
+  total?: number
+}
+
+const SECTION_DESCRIPTIONS: Record<string, string> = {
   invitatorio: 'Oración de apertura que nos invita a la alabanza',
   himno: 'Poesía cantada para celebrar la hora',
   salmodia: 'Salmos y cánticos del Antiguo Testamento',
@@ -19,9 +31,9 @@ const SECTION_DESCRIPTIONS = {
   conclusion: 'Bendición y despedida',
 }
 
-export default function PrayerCard({ card, index, total }) {
+export default function PrayerCard({ card, index, total }: PrayerCardProps) {
   const [showTooltip, setShowTooltip] = useState(false)
-  const tooltipRef = useRef(null)
+  const tooltipRef = useRef<HTMLDivElement>(null)
 
   if (!card) {
     return null
@@ -29,9 +41,8 @@ export default function PrayerCard({ card, index, total }) {
 
   const description = SECTION_DESCRIPTIONS[card.type] || 'Sección de oración'
 
-  // Close tooltip on Escape key
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && showTooltip) {
         setShowTooltip(false)
       }
@@ -43,10 +54,9 @@ export default function PrayerCard({ card, index, total }) {
     }
   }, [showTooltip])
 
-  // Close tooltip when clicking outside
   useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (tooltipRef.current && !tooltipRef.current.contains(e.target)) {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (tooltipRef.current && !tooltipRef.current.contains(e.target as Node)) {
         setShowTooltip(false)
       }
     }

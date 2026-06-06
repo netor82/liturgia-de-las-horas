@@ -1,13 +1,29 @@
-import { createContext, useReducer, useCallback, useEffect } from 'react'
+import { createContext, useReducer, useCallback, useEffect, ReactNode } from 'react'
 
-export const PreferencesContext = createContext()
+type FontSize = 'small' | 'normal' | 'large' | 'xl'
 
-const initialState = {
+interface PreferencesState {
+  fontSize: FontSize
+  prefersDarkMode: boolean
+}
+
+interface PreferencesContextType extends PreferencesState {
+  setFontSize: (size: FontSize) => void
+}
+
+export const PreferencesContext = createContext<PreferencesContextType | undefined>(undefined)
+
+const initialState: PreferencesState = {
   fontSize: 'normal',
   prefersDarkMode: false,
 }
 
-function preferencesReducer(state, action) {
+type PreferencesAction =
+  | { type: 'SET_FONT_SIZE'; payload: FontSize }
+  | { type: 'SET_DARK_MODE'; payload: boolean }
+  | { type: 'INIT_FROM_STORAGE'; payload: PreferencesState }
+
+function preferencesReducer(state: PreferencesState, action: PreferencesAction): PreferencesState {
   switch (action.type) {
     case 'SET_FONT_SIZE':
       return { ...state, fontSize: action.payload }
@@ -20,52 +36,52 @@ function preferencesReducer(state, action) {
   }
 }
 
-export function PreferencesProvider({ children }) {
+interface PreferencesProviderProps {
+  children: ReactNode
+}
+
+export function PreferencesProvider({ children }: PreferencesProviderProps) {
   const [state, dispatch] = useReducer(preferencesReducer, initialState)
 
-  // Load preferences from localStorage on mount
   useEffect(() => {
     const stored = localStorage.getItem('preferences')
     if (stored) {
       try {
         dispatch({ type: 'INIT_FROM_STORAGE', payload: JSON.parse(stored) })
-      } catch (e) {
-        console.warn('Failed to load preferences:', e)
+      } catch {
+        console.warn('Failed to load preferences')
       }
     }
 
-    // Check system dark mode preference
     const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)')
     dispatch({ type: 'SET_DARK_MODE', payload: darkModeQuery.matches })
 
-    // Listen for dark mode changes
-    const handler = (e) => dispatch({ type: 'SET_DARK_MODE', payload: e.matches })
+    const handler = (e: MediaQueryListEvent) => {
+      dispatch({ type: 'SET_DARK_MODE', payload: e.matches })
+    }
     darkModeQuery.addEventListener('change', handler)
 
     return () => darkModeQuery.removeEventListener('change', handler)
   }, [])
 
-  // Persist fontSize to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem('fontSize', state.fontSize)
   }, [state.fontSize])
 
-  // Persist all preferences
   useEffect(() => {
     localStorage.setItem('preferences', JSON.stringify(state))
   }, [state])
 
-  // Apply font size class to document
   useEffect(() => {
     const html = document.documentElement
     html.className = `font-${state.fontSize}`
   }, [state.fontSize])
 
-  const setFontSize = useCallback((size) => {
+  const setFontSize = useCallback((size: FontSize) => {
     dispatch({ type: 'SET_FONT_SIZE', payload: size })
   }, [])
 
-  const value = {
+  const value: PreferencesContextType = {
     ...state,
     setFontSize,
   }

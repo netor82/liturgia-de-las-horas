@@ -3,14 +3,25 @@ import { LiturgicalContext } from '../contexts/LiturgicalContext'
 import { getSeasonNameDisplay } from '../utils/liturgicalColors'
 import styles from './LiturgicalHeader.module.css'
 
+interface Cycles {
+  sundaysYear?: string
+  weekdaysCycle?: string
+}
+
 export default function LiturgicalHeader() {
-  const { liturgicalDay, selectedDate } = useContext(LiturgicalContext)
+  const liturgicalCtx = useContext(LiturgicalContext)
+
+  if (!liturgicalCtx) {
+    throw new Error('LiturgicalContext must be provided')
+  }
+
+  const { liturgicalDay, selectedDate } = liturgicalCtx
 
   if (!liturgicalDay) {
     return null
   }
 
-  const formatDate = (dateStr) => {
+  const formatDate = (dateStr: string) => {
     const d = new Date(dateStr + 'T00:00:00')
     return d.toLocaleDateString('es-ES', {
       weekday: 'long',
@@ -28,16 +39,15 @@ export default function LiturgicalHeader() {
   }
 
   const getCycleDisplay = () => {
-    if (!liturgicalDay.cycles) return null
-    // cycles is an object like { sundaysYear: 'A', weekdaysCycle: '1', ... }
-    const cycle = liturgicalDay.cycles.sundaysYear || liturgicalDay.cycles.weekdaysCycle
+    const cycles = liturgicalDay as unknown as { cycles?: Cycles }
+    if (!cycles?.cycles) return null
+    const cycle = cycles.cycles.sundaysYear || cycles.cycles.weekdaysCycle
     if (!cycle) return null
     return `Año ${cycle}`
   }
 
-  // Determine if we need white text (dark background seasons) or dark text (light backgrounds)
   const darkSeasons = ['ADVENT', 'LENT', 'EASTERTIDE']
-  const isDarkSeason = darkSeasons.includes(liturgicalDay.liturgicalSeason)
+  const isDarkSeason = darkSeasons.includes(liturgicalDay.liturgicalSeason || '')
 
   return (
     <header

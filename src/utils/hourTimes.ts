@@ -1,5 +1,10 @@
-// Traditional canonical hour times
-export const hourTimes = {
+interface HourInfo {
+  displayName: string
+  time: string
+  rank: number
+}
+
+const hourTimes: Record<string, HourInfo> = {
   'oficio-de-lectura': {
     displayName: 'Oficio de Lectura',
     time: '6:00 AM',
@@ -37,19 +42,18 @@ export const hourTimes = {
   },
 }
 
-export function getHourDisplayName(hourKey) {
+export function getHourDisplayName(hourKey: string): string {
   return hourTimes[hourKey]?.displayName || hourKey
 }
 
-export function getHourTime(hourKey) {
+export function getHourTime(hourKey: string): string {
   return hourTimes[hourKey]?.time || '--:-- --'
 }
 
-export function getNearestHour() {
+export function getNearestHour(): string {
   const now = new Date()
   const hour = now.getHours()
 
-  // Map hour of day to canonical hour (prefer Laudes at 6am over Oficio)
   if (hour < 9) return 'laudes'
   if (hour < 12) return 'tercia'
   if (hour < 15) return 'sexta'
@@ -58,7 +62,7 @@ export function getNearestHour() {
   return 'completas'
 }
 
-export function getAllHours() {
+export function getAllHours(): (HourInfo & { key: string })[] {
   return Object.entries(hourTimes).map(([key, data]) => ({
     key,
     ...data,
