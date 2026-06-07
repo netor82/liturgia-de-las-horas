@@ -34,7 +34,7 @@
 }
 
 .speedLabel {
-  font-size: var(--sans-size-sm);
+  font-size: var(--base-font-size);
   color: var(--text-secondary);
 }
 

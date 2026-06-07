@@ -21,7 +21,7 @@
 .legend {
   padding: 0 var(--spacing-sm);
   font-weight: 600;
-  font-size: var(--sans-size-base);
+  font-size: var(--base-font-size);
 }
 
 .options {
@@ -59,11 +59,11 @@
 
 .labelText {
   font-weight: 600;
-  font-size: var(--sans-size-base);
+  font-size: var(--base-font-size);
 }
 
 .labelDescription {
-  font-size: var(--sans-size-sm);
+  font-size: var(--base-font-size);
   color: var(--text-secondary);
 }
 

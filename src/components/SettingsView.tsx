@@ -87,14 +87,14 @@ export default function SettingsView() {
             </p>
             <p>
               Detalles técnicos:
-              <ul className={styles.list}>
-                <li>React 18+ con Vite</li>
-                <li>Calendario litúrgico con romcal</li>
-                <li>Síntesis de voz mediante Web Speech API</li>
-                <li>100% compatible con WCAG AA</li>
-                <li>Funcionamiento completamente offline</li>
-              </ul>
             </p>
+            <ul className={styles.list}>
+              <li>React 18+ con Vite</li>
+              <li>Calendario litúrgico con romcal</li>
+              <li>Síntesis de voz mediante Web Speech API</li>
+              <li>100% compatible con WCAG AA</li>
+              <li>Funcionamiento completamente offline</li>
+            </ul>
           </div>
         </section>
       </div>

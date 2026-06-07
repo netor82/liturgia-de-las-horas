@@ -24,7 +24,7 @@
   cursor: pointer;
   border: none;
   font-family: inherit;
-  font-size: var(--sans-size-base);
+  font-size: var(--base-font-size);
 }
 
 .backButton:hover {

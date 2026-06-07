@@ -38,11 +38,11 @@
 
 .hourLabel {
   font-weight: 600;
-  font-size: var(--sans-size-base);
+  font-size: var(--base-font-size);
 }
 
 .hourTime {
-  font-size: var(--sans-size-sm);
+  font-size: var(--base-font-size);
   color: var(--text-secondary);
   margin-top: var(--spacing-xs);
 }
@@ -63,7 +63,7 @@
   cursor: pointer;
   border: none;
   font-family: inherit;
-  font-size: var(--sans-size-base);
+  font-size: var(--base-font-size);
   transition: background-color 0.2s;
 }
 

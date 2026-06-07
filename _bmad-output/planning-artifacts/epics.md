@@ -631,8 +631,8 @@ Infrastructure foundation enabling all features. Team sets up development enviro
 - Liturgical seasons: `--accent-color` (mapped to season-specific color)
 
 **Typography:**
-- `--serif-family`, `--serif-size-base` (18px), `--serif-line-height` (1.8)
-- `--sans-family`, `--sans-size-base` (16px), `--sans-size-sm`, `--sans-size-lg`, `--sans-line-height` (1.5)
+- `--serif-family`, `--base-font-size`, `--serif-line-height` (1.8)
+- `--sans-family`, `--base-font-size`, `small`, `large`, `--sans-line-height` (1.5)
 - `--heading-size-lg` (32px), `--heading-size-md` (24px), `--heading-size-sm` (20px)
 
 **Spacing:**

@@ -3,15 +3,15 @@ import { PreferencesContext } from '../contexts/PreferencesContext'
 import styles from './FontSizeSelector.module.css'
 
 interface FontSizeOption {
-  value: 'small' | 'normal' | 'large' | 'xl'
+  value: 'sm' | 'normal' | 'lg' | 'xl'
   label: string
   description: string
 }
 
 const FONT_SIZES: FontSizeOption[] = [
-  { value: 'small', label: 'Pequeño', description: '14px' },
+  { value: 'sm', label: 'Pequeño', description: '14px' },
   { value: 'normal', label: 'Normal', description: '16px' },
-  { value: 'large', label: 'Grande', description: '18px' },
+  { value: 'lg', label: 'Grande', description: '18px' },
   { value: 'xl', label: 'Extra Grande', description: '20px' },
 ]
 
@@ -24,7 +24,7 @@ export default function FontSizeSelector() {
 
   const { fontSize, setFontSize } = preferencesCtx
 
-  const handleFontSizeChange = (newSize: 'small' | 'normal' | 'large' | 'xl') => {
+  const handleFontSizeChange = (newSize: 'sm' | 'normal' | 'lg' | 'xl') => {
     setFontSize(newSize)
   }
 
@@ -43,7 +43,7 @@ export default function FontSizeSelector() {
                 value={size.value}
                 checked={fontSize === size.value}
                 onChange={(e) =>
-                  handleFontSizeChange(e.target.value as 'small' | 'normal' | 'large' | 'xl')
+                  handleFontSizeChange(e.target.value as 'sm' | 'normal' | 'lg' | 'xl')
                 }
                 className={styles.input}
                 aria-label={`${size.label} (${size.description})`}

@@ -20,18 +20,15 @@
 
   /* Typography */
   --serif-family: 'Georgia', 'Garamond', serif;
-  --serif-size-base: 18px;
   --serif-line-height: 1.8;
 
   --sans-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --sans-size-base: 16px;
-  --sans-size-sm: 14px;
-  --sans-size-lg: 18px;
   --sans-line-height: 1.5;
 
-  --heading-size-lg: 32px;
-  --heading-size-md: 24px;
-  --heading-size-sm: 20px;
+  --heading-size-lg: xx-large;
+  --heading-size-md: x-large;
+  --heading-size-sm: large;
 
   /* Spacing Scale */
   --spacing-xs: 4px;
@@ -116,7 +113,7 @@ html {
 
 body {
   font-family: var(--sans-family);
-  font-size: var(--sans-size-base);
+  font-size: var(--base-font-size);
   line-height: var(--sans-line-height);
   color: var(--text-primary);
   background-color: var(--cream);
@@ -196,6 +193,9 @@ html {
 
 .font-xl {
   --base-font-size: 20px;
+}
+select {
+  font-size: inherit;
 }
 
 /* Reduced Motion */

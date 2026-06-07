@@ -1,6 +1,6 @@
 import { createContext, useReducer, useCallback, useEffect, ReactNode } from 'react'
 
-type FontSize = 'small' | 'normal' | 'large' | 'xl'
+type FontSize = 'sm' | 'normal' | 'lg' | 'xl'
 
 interface PreferencesState {
   fontSize: FontSize

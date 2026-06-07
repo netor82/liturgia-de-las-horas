@@ -51,7 +51,7 @@
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.2s;
-  font-size: var(--sans-size-base);
+  font-size: var(--base-font-size);
 }
 
 .day:hover:not(:disabled) {
@@ -89,7 +89,7 @@
   color: var(--text-inverse);
   padding: var(--spacing-sm) var(--spacing-md);
   border-radius: 4px;
-  font-size: var(--sans-size-sm);
+  font-size: var(--base-font-size);
   z-index: 1000;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   max-width: 200px;
@@ -120,6 +120,6 @@
   }
 
   .day {
-    font-size: var(--sans-size-sm);
+    font-size: var(--base-font-size);
   }
 }

@@ -12,7 +12,7 @@
 }
 
 .date {
-  font-size: var(--sans-size-base);
+  font-size: var(--base-font-size);
   margin-bottom: var(--spacing-xs);
 }
 
@@ -24,12 +24,12 @@
 }
 
 .psaltery {
-  font-size: var(--sans-size-base);
+  font-size: var(--base-font-size);
   margin: var(--spacing-sm) 0;
 }
 
 .cycle {
-  font-size: var(--sans-size-sm);
+  font-size: var(--base-font-size);
   opacity: 0.9;
 }
 
