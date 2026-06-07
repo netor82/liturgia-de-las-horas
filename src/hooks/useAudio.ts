@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 
 interface UseAudioReturn {
   isPlaying: boolean
@@ -23,14 +23,14 @@ export function useAudio(): UseAudioReturn {
     setIsSupported(supported)
   }, [])
 
-  const play = (text: string) => {
+  const play = useCallback((text: string) => {
     if (!isSupported) return
 
     window.speechSynthesis.cancel()
 
     const utterance = new SpeechSynthesisUtterance(text)
-    utterance.lang = 'es-ES'
     utterance.rate = currentSpeed
+    utterance.volume = 1
 
     utterance.onstart = () => {
       setIsPlaying(true)
@@ -42,17 +42,19 @@ export function useAudio(): UseAudioReturn {
       setIsPaused(false)
     }
 
-    utterance.onerror = () => {
+    utterance.onerror = (e) => {
       setIsPlaying(false)
       setIsPaused(false)
+      console.error('Speech error:', e)
     }
 
     utteranceRef.current = utterance
     window.speechSynthesis.speak(utterance)
-  }
+  }, [isSupported, currentSpeed])
 
-  const pause = () => {
+  const pause = useCallback(() => {
     if (!isSupported) return
+
     if (window.speechSynthesis.paused) {
       window.speechSynthesis.resume()
       setIsPaused(false)
@@ -62,18 +64,19 @@ export function useAudio(): UseAudioReturn {
       setIsPaused(true)
       setIsPlaying(false)
     }
-  }
+  }, [isSupported])
 
-  const stop = () => {
+  const stop = useCallback(() => {
     if (!isSupported) return
+
     window.speechSynthesis.cancel()
     setIsPlaying(false)
     setIsPaused(false)
-  }
+  }, [isSupported])
 
-  const setSpeed = (speed: number) => {
+  const setSpeed = useCallback((speed: number) => {
     setCurrentSpeed(speed)
-  }
+  }, [])
 
   return {
     isPlaying,
