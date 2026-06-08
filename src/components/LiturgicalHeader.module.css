@@ -1,10 +1,5 @@
 .container {
-  background-color: var(--bg-primary);
   padding: var(--spacing-lg);
-}
-
-.indicator {
-  color: var(--accent-color);
 }
 
 @media (prefers-color-scheme: dark) {

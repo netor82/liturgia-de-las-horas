@@ -59,12 +59,12 @@ export default function AudioPlayer({ text, onCardChange }: AudioPlayerProps) {
 
   const getButtonLabel = () => {
     if (isPlaying && !isPaused) {
-      return 'Pausar'
+      return '▩'
     }
     if (isPaused) {
-      return 'Reanudar'
+      return '▶'
     }
-    return 'Escuchar'
+    return '▶'
   }
 
   return (
@@ -80,9 +80,6 @@ export default function AudioPlayer({ text, onCardChange }: AudioPlayerProps) {
         </button>
 
         <div className={styles.speedContainer}>
-          <label htmlFor="speed-select" className={styles.speedLabel}>
-            Velocidad:
-          </label>
           <select
             id="speed-select"
             value={currentSpeed}

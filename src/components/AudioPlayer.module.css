@@ -1,19 +1,18 @@
 .container {
   display: flex;
-  gap: var(--spacing-md);
+  gap: var(--spacing-sm);
   align-items: center;
-  flex-wrap: wrap;
-  margin-top: var(--spacing-md);
   padding-top: var(--spacing-md);
-  border-top: 1px solid var(--warm-gray-light);
+  flex-shrink: 0;
 }
 
 .playButton {
-  padding: var(--spacing-sm) var(--spacing-lg);
+  padding: var(--spacing-sm) var(--spacing-md);
   color: var(--text-inverse);
   font-weight: 600;
   cursor: pointer;
   transition: opacity 0.2s;
+  border-radius: 50%;
 }
 
 .playButton:hover {
@@ -38,23 +37,15 @@
 .speedSelect {
   padding: var(--spacing-sm);
   border: 1px solid var(--warm-gray-mid);
+  background-color: var(--warm-gray-light);
   border-radius: var(--border-radius);
-  background-color: var(--cream);
-  color: var(--text-primary);
+  color: var(--text-secondary);
   cursor: pointer;
   font-family: inherit;
 }
 
-@media (prefers-color-scheme: dark) {
-  .speedSelect {
-    background-color: var(--bg-secondary);
-    border-color: var(--warm-gray-dark);
-  }
-}
-
 @media (max-width: 768px) {
   .container {
-    flex-direction: column;
     gap: var(--spacing-sm);
   }
 

@@ -35,7 +35,7 @@ export default function FontSizeController() {
         className={styles.fontButton}
         aria-label="Disminuir tamaño de fuente"
       >
-        A−
+        A-
       </button>
       <button
         onClick={increaseFontSize}

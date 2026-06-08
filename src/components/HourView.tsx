@@ -98,42 +98,43 @@ export default function HourView() {
 
   return (
     <main className={styles.container}>
-      <LiturgicalHeader />
 
       <div className={styles.cardContainer}>
-        <PrayerCard card={currentCard} index={cardIndex} total={cards.length} />
+        <button onClick={() => navigate(`/${date}`)} className={styles.backButton}>
+          ‹
+        </button>
+        <div className={styles.title}>
+          <h2><span className="dayColor">●</span> Laudes</h2>
+          <h3>Oración de la mañana</h3>
+        </div>
         <AudioPlayer text={currentCard?.content || ''} onCardChange={cardIndex} />
       </div>
+      <PrayerCard card={currentCard} />
 
       <nav className={styles.navigation} aria-label="Navegación de tarjetas">
         <button
           onClick={handlePrevious}
           disabled={cardIndex === 0}
-          className={styles.navButton}
           aria-label="Tarjeta anterior"
         >
-          ← Anterior
+          ←
         </button>
 
         <div className={styles.progress}>
-          {currentCard?.title} — {cardIndex + 1} de {cards.length}
+          {cardIndex + 1} de {cards.length} { currentCard.title ? `— ${currentCard.title}` : null } 
         </div>
 
         <button
           onClick={handleNext}
           disabled={cardIndex === cards.length - 1}
-          className={styles.navButton}
           aria-label="Tarjeta siguiente"
         >
-          Siguiente →
+          →
         </button>
       </nav>
 
       <div className={styles.footer}>
         <FontSizeController />
-        <button onClick={() => navigate(`/${date}`)} className={styles.backButton}>
-          ← Volver a Horas
-        </button>
       </div>
 
       <div

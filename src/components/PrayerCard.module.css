@@ -1,32 +1,26 @@
 .card {
-  background-color: var(--white);
   padding: var(--card-padding);
-  border-radius: var(--border-radius);
-  margin-bottom: var(--spacing-lg);
-  font-family: var(--serif-family);
-  line-height: var(--serif-line-height);
-}
-
-@media (prefers-color-scheme: dark) {
-  .card {
-    background-color: var(--bg-secondary);
-  }
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--spacing-md);
-  border-bottom: 1px solid var(--warm-gray-light);
-  padding-bottom: var(--spacing-sm);
 }
 
 .title {
-  font-size: var(--heading-size-sm);
+  font-family: var(--font-hd);
+  font-size: calc(var(--base-font-size) - 3px);
   font-weight: 600;
-  font-family: var(--sans-family);
-  margin: 0;
+  letter-spacing: 0.2em;
+  color: var(--text-inverse);
+  text-transform: uppercase;
+}
+
+.titleLine {
+  flex: 1; height: 1px;
+  background: linear-gradient(to right, var(--warm-gray-mid) 60%, transparent);
+  margin-left: var(--spacing-sm);
 }
 
 .infoContainer {
@@ -35,16 +29,9 @@
 
 .infoIcon {
   background: none;
-  font-size: 18px;
-  color: var(--accent-color);
-  padding: 0;
-  border: none;
-  width: var(--touch-target-min);
-  height: var(--touch-target-min);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  }
+  border-radius: 50%;
+  color: var(--text-secondary)
+}
 
 .tooltip {
   position: absolute;
@@ -62,6 +49,7 @@
 }
 
 .content {
+  font-family: var(--font-bd);
   max-height: 60vh;
   overflow-y: auto;
   padding-right: var(--spacing-sm);
@@ -70,19 +58,17 @@
 .content p {
   margin: 0 0 var(--spacing-md) 0;
   line-height: var(--serif-line-height);
+  white-space: pre-line;
+}
+
+.content p:first-child::first-letter {
+  color: var(--text-inverse);
+  font-size: calc(var(--base-font-size) * 3);
+  float:left;
 }
 
 .content p:last-child {
   margin-bottom: 0;
-}
-
-.progress {
-  font-size: var(--base-font-size);
-  color: var(--text-secondary);
-  margin-top: var(--spacing-md);
-  padding-top: var(--spacing-md);
-  border-top: 1px solid var(--warm-gray-light);
-  text-align: right;
 }
 
 .content::-webkit-scrollbar {

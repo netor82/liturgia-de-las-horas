@@ -48,7 +48,7 @@ export default function LiturgicalHeader() {
     <header className={`${styles.container} `}>
       <h1>{formatDate(liturgicalDay.date)}</h1>
       <h2>{liturgicalDay.name}</h2>
-      <h3><span  className={`${styles.indicator} `}>●</span>{getPsalterDisplay()}</h3>
+      <h3><span className="dayColor">●</span> {getPsalterDisplay()}</h3>
     </header>
   )
 }

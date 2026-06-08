@@ -9,8 +9,6 @@ interface ContentCard {
 
 interface PrayerCardProps {
   card: ContentCard | null
-  index?: number
-  total?: number
 }
 
 const SECTION_DESCRIPTIONS: Record<string, string> = {
@@ -31,7 +29,7 @@ const SECTION_DESCRIPTIONS: Record<string, string> = {
   conclusion: 'Bendición y despedida',
 }
 
-export default function PrayerCard({ card, index, total }: PrayerCardProps) {
+export default function PrayerCard({ card }: PrayerCardProps) {
   const [showTooltip, setShowTooltip] = useState(false)
   const tooltipRef = useRef<HTMLDivElement>(null)
 
@@ -70,7 +68,8 @@ export default function PrayerCard({ card, index, total }: PrayerCardProps) {
   return (
     <article className={styles.card}>
       <div className={styles.header}>
-        <h3 className={styles.title}>{card.title}</h3>
+        <h3 className={styles.title}>✦ {card.title}</h3>
+        <span className={styles.titleLine}></span>
         <div className={styles.infoContainer} ref={tooltipRef}>
           <button
             className={styles.infoIcon}
@@ -79,7 +78,7 @@ export default function PrayerCard({ card, index, total }: PrayerCardProps) {
             aria-expanded={showTooltip}
             aria-describedby={showTooltip ? 'info-tooltip' : undefined}
           >
-            ℹ️
+            ℹ
           </button>
           {showTooltip && (
             <div id="info-tooltip" className={styles.tooltip} role="tooltip">
@@ -90,16 +89,10 @@ export default function PrayerCard({ card, index, total }: PrayerCardProps) {
       </div>
 
       <div className={styles.content}>
-        {card.content.split('\n').map((paragraph, i) => (
+        {card.content.split('\n\n').map((paragraph, i) => (
           <p key={i}>{paragraph}</p>
         ))}
       </div>
-
-      {index !== undefined && total !== undefined && (
-        <div className={styles.progress}>
-          {card.title} — {index + 1} de {total}
-        </div>
-      )}
     </article>
   )
 }
