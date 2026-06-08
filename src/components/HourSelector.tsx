@@ -3,7 +3,9 @@ import { useContext, useEffect } from 'react'
 import { LiturgicalContext } from '../contexts/LiturgicalContext'
 import { getAllHours, getNearestHour } from '../utils/hourTimes'
 import { useLiturgicalDay } from '../hooks/useLiturgicalDay'
+import FontSizeController from './FontSizeController'
 import styles from './HourSelector.module.css'
+import LiturgicalHeader from './LiturgicalHeader'
 
 export default function HourSelector() {
   const { date } = useParams<{ date?: string }>()
@@ -46,14 +48,14 @@ export default function HourSelector() {
 
   return (
     <main className={styles.container}>
-      <h1>{formatDate(selectedDate)}</h1>
-      {liturgicalDay?.name && <h2>{liturgicalDay.name}</h2>}
+      <LiturgicalHeader />
+      <div className="home-rule">✦</div>
       <nav aria-label="Horas canónicas" className={styles.hoursNav}>
         <div className={styles.grid}>
           {hours.map((hour) => (
             <button
               key={hour.key}
-              className={`${styles.hourButton} ${nearestHour === hour.key ? styles.active : ''}`}
+              className={`${styles.hourButton} ${nearestHour === hour.key ? 'active ' + styles.active : ''}`}
               onClick={() => navigate(`/${selectedDate}/${hour.key}`)}
               aria-label={`Seleccionar ${hour.displayName}, ${hour.time}`}
             >
@@ -65,20 +67,23 @@ export default function HourSelector() {
       </nav>
 
       <nav className={styles.footer} aria-label="Navegación principal">
-        <button
-          className={styles.navButton}
-          onClick={() => navigate('/calendario')}
-          aria-label="Ir al calendario litúrgico"
-        >
-          📅 Calendario
-        </button>
-        <button
-          className={styles.navButton}
-          onClick={() => navigate('/configuracion')}
-          aria-label="Ir a configuración y accesibilidad"
-        >
-          ⚙️ Configuración
-        </button>
+        <FontSizeController />
+        <div className={styles.footerButtons}>
+          <button
+            className={styles.navButton}
+            onClick={() => navigate('/calendario')}
+            aria-label="Ir al calendario litúrgico"
+          >
+            ⊞ Calendario
+          </button>
+          <button
+            className={styles.navButton}
+            onClick={() => navigate('/configuracion')}
+            aria-label="Ir a configuración y accesibilidad"
+          >
+            ⚙ Configuración
+          </button>
+        </div>
       </nav>
     </main>
   )

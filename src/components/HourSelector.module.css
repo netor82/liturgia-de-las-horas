@@ -1,5 +1,5 @@
 .container {
-  max-width: 800px;
+  max-width: var(--container-max-width);
   margin: 0 auto;
   padding: var(--spacing-md);
 }
@@ -12,24 +12,12 @@
 }
 
 .hourButton {
-  min-height: var(--button-height);
   padding: var(--spacing-md);
-  background-color: var(--warm-gray-light);
-  border-radius: 4px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: background-color 0.2s;
-}
-
-.hourButton:hover {
-  background-color: var(--warm-gray-mid);
-}
-
-.hourButton.active {
-  background-color: var(--soft-brown);
-  color: var(--white);
+  transition: background-color 0.5s;
 }
 
 .hourButton.active .hourTime {
@@ -49,31 +37,19 @@
 
 .footer {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: var(--spacing-md);
-  margin-top: var(--spacing-2xl);
+  margin-top: auto;
+  padding-top: var(--spacing-lg);
+}
+
+.footerButtons {
+  display: flex;
+  gap: var(--spacing-sm);
   justify-content: center;
   flex-wrap: wrap;
-}
-
-.navButton {
-  padding: var(--spacing-sm) var(--spacing-lg);
-  min-height: var(--button-height);
-  background-color: var(--warm-gray-light);
-  border-radius: 4px;
-  cursor: pointer;
-  border: none;
-  font-family: inherit;
-  font-size: var(--base-font-size);
-  transition: background-color 0.2s;
-}
-
-.navButton:hover {
-  background-color: var(--warm-gray-mid);
-}
-
-.navButton:focus-visible {
-  outline: 2px solid var(--focus-ring);
-  outline-offset: 2px;
+  width: 100%;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -95,8 +71,9 @@
     gap: var(--spacing-sm);
   }
 
-  .footer {
+  .footerButtons {
     flex-direction: column;
+    gap: var(--spacing-sm);
   }
 
   .navButton {

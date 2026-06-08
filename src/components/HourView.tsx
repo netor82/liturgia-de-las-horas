@@ -5,6 +5,7 @@ import { resolveContent } from '../utils/contentResolver'
 import LiturgicalHeader from './LiturgicalHeader'
 import PrayerCard from './PrayerCard'
 import AudioPlayer from './AudioPlayer'
+import FontSizeController from './FontSizeController'
 import styles from './HourView.module.css'
 
 interface ContentCard {
@@ -129,6 +130,7 @@ export default function HourView() {
       </nav>
 
       <div className={styles.footer}>
+        <FontSizeController />
         <button onClick={() => navigate(`/${date}`)} className={styles.backButton}>
           ← Volver a Horas
         </button>

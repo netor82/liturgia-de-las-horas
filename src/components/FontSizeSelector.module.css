@@ -2,7 +2,7 @@
   max-width: 400px;
   padding: var(--spacing-lg);
   background-color: var(--cream);
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   margin: var(--spacing-lg) auto;
 }
 
@@ -13,7 +13,7 @@
 
 .fieldset {
   border: 1px solid var(--warm-gray-light);
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   padding: var(--spacing-md);
   margin: 0;
 }

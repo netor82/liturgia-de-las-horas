@@ -1,44 +1,10 @@
 .container {
-  border: solid var(--spacing-xs) var(--accent-color);
-  border-radius: 4px;
   background-color: var(--bg-primary);
-  color: var(--text-inverse);
   padding: var(--spacing-lg);
-  text-align: center;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.date {
-  font-size: var(--base-font-size);
-  margin-bottom: var(--spacing-xs);
-}
-
-.saintName {
-  font-size: var(--heading-size-md);
-  font-weight: 600;
-  margin: var(--spacing-sm) 0;
-  font-family: var(--serif-family);
-}
-
-.psaltery {
-  font-size: var(--base-font-size);
-  margin: var(--spacing-sm) 0;
-}
-
-.cycle {
-  font-size: var(--base-font-size);
-  opacity: 0.9;
-}
-
-.lightText {
-  color: var(--text-primary);
-}
-
-.darkText {
-  color: var(--white);
+.indicator {
+  color: var(--accent-color);
 }
 
 @media (prefers-color-scheme: dark) {

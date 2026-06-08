@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { LiturgicalContext } from '../contexts/LiturgicalContext'
+import { Rank } from 'romcal'
 import styles from './LiturgicalHeader.module.css'
 
 interface Cycles {
@@ -31,31 +32,23 @@ export default function LiturgicalHeader() {
   }
 
   const getPsalterDisplay = () => {
-    const psalter = liturgicalDay?.cycles?.psalterWeek[5] ?? 1
-    const week = liturgicalDay?.calendar?.weekOfSeason ?? 1
+    if (!liturgicalDay) return null
+
+    const psalter = liturgicalDay.cycles?.psalterWeek[5] ?? 1
+    const week = liturgicalDay.calendar?.weekOfSeason ?? 1
     const seasonName = liturgicalDay.seasonNames[0]
-    return `${seasonName}. Semana ${week}. Salterio ${psalter}`
+    const cycle = (liturgicalDay.rank == 'WEEKDAY') ? 
+      'Año ' + liturgicalDay.cycles?.weekdayCycle[5] :
+      'Ciclo ' + liturgicalDay.cycles?.sundayCycle[5];
+    return `${seasonName}. Semana ${week}. Salterio ${psalter}. ${cycle}.`
   }
 
-  const getCycleDisplay = () => {
-    const cycles = liturgicalDay as unknown as { cycles?: Cycles }
-    if (!cycles?.cycles) return null
-    const cycle = cycles.cycles.sundaysYear || cycles.cycles.weekdaysCycle
-    if (!cycle) return null
-    return `Año ${cycle}`
-  }
-
-  const darkSeasons = ['ADVENT', 'LENT', 'EASTERTIDE']
-  const isDarkSeason = darkSeasons.includes(liturgicalDay.liturgicalSeason || '')
 
   return (
-    <header
-      className={`${styles.container} ${isDarkSeason ? styles.darkText : styles.lightText}`}
-    >
-      <div className={styles.date}>{formatDate(liturgicalDay.date)}</div>
-      <div className={styles.saintName}>{liturgicalDay.name}</div>
-      <div className={styles.psaltery}>{getPsalterDisplay()}</div>
-      {getCycleDisplay() && <div className={styles.cycle}>{getCycleDisplay()}</div>}
+    <header className={`${styles.container} `}>
+      <h1>{formatDate(liturgicalDay.date)}</h1>
+      <h2>{liturgicalDay.name}</h2>
+      <h3><span  className={`${styles.indicator} `}>●</span>{getPsalterDisplay()}</h3>
     </header>
   )
 }
