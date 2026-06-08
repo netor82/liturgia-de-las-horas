@@ -1,6 +1,3 @@
 .fontSizeControls {
-  display: flex;
-  gap: var(--spacing-sm);
-  justify-content: center;
-  margin-bottom: var(--spacing-md);
+  display: inline-block
 }

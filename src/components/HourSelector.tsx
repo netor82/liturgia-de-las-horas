@@ -67,8 +67,8 @@ export default function HourSelector() {
       </nav>
 
       <nav className={styles.footer} aria-label="Navegación principal">
-        <FontSizeController />
         <div className={styles.footerButtons}>
+          <FontSizeController />
           <button
             className={styles.navButton}
             onClick={() => navigate('/calendario')}
