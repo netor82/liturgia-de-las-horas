@@ -2,6 +2,7 @@ interface HourInfo {
   displayName: string
   time: string
   rank: number
+  span: number
 }
 
 const hourTimes: Record<string, HourInfo> = {
@@ -9,36 +10,43 @@ const hourTimes: Record<string, HourInfo> = {
     displayName: 'Oficio de Lectura',
     time: '6:00 AM',
     rank: 1,
+    span: 3
   },
   laudes: {
     displayName: 'Laudes',
     time: '6:00 AM',
     rank: 2,
+    span: 3
   },
   tercia: {
     displayName: 'Tercia',
     time: '9:00 AM',
     rank: 3,
+    span: 1
   },
   sexta: {
     displayName: 'Sexta',
     time: '12:00 PM',
     rank: 4,
+    span: 1
   },
   nona: {
     displayName: 'Nona',
     time: '3:00 PM',
     rank: 5,
+    span: 1
   },
   visperas: {
     displayName: 'Vísperas',
     time: '6:00 PM',
     rank: 6,
+    span: 3
   },
   completas: {
     displayName: 'Completas',
     time: '9:00 PM',
     rank: 7,
+    span: 3
   },
 }
 

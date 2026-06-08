@@ -56,6 +56,7 @@ export default function HourSelector() {
             <button
               key={hour.key}
               className={`${styles.hourButton} ${nearestHour === hour.key ? 'active ' + styles.active : ''}`}
+              style={{ gridColumn: `span ${hour.span}` }}
               onClick={() => navigate(`/${selectedDate}/${hour.key}`)}
               aria-label={`Seleccionar ${hour.displayName}, ${hour.time}`}
             >
