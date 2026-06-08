@@ -1,8 +1,8 @@
 ---
 title: "Liturgia de las Horas - PRD"
-status: draft
+status: final
 created: 2026-06-07
-updated: 2026-06-07
+updated: 2026-06-08
 audience: "Equipo de Desarrollo"
 project_name: "Liturgia de las Horas"
 user_name: "Neto"
@@ -87,7 +87,8 @@ Los practicantes de la Liturgia de las Horas enfrentan fricciones con herramient
   - `/#/` — HourSelector con fecha por defecto (hoy)
   - `/#/:date` (YYYY-MM-DD) — HourSelector para fecha específica
   - `/#/:date/:hour` — HourView para hora canónica específica
-  - `/#/calendario` — CalendarView
+  - `/#/calendario` — CalendarView (grid mensual)
+  - `/#/ano` — YearView (lista compacta de todos los días del año)
 - Deep links shareable y bookmarkable
 - Hard refresh funciona en GitHub Pages (sin 404s)
 
@@ -102,6 +103,19 @@ Los practicantes de la Liturgia de las Horas enfrentan fricciones con herramient
   - Click en día navega a `/#/:date`
   - Tooltip (hover en desktop, tap en móvil) muestra nombre de santo/festividad
 - Accesibilidad: Botones navegación accesibles, grid semántico
+
+**FR-09: Año Litúrgico Compacto (YearView)**
+
+- User story: Como usuario, puedo ver un resumen compacto de todos los días litúrgicos del año, con selector de año (±4 años alrededor del actual).
+- Responsabilidad: Componente `YearView`
+- Comportamiento:
+  - Lista compacta de 365/366 días: una fila por día
+  - 4 columnas: indicador de color litúrgico (●), fecha (DD MM), temporada, nombre del día
+  - Selector de año: dropdown con años [actual-4 ... actual+4], año actual por defecto
+  - Procesamiento en runtime: iterar romcal output para año seleccionado
+  - Click en día navega a `/#/:date`
+- Accesibilidad: Tabla semántica, selector accesible, orden lógico
+- **Status:** Nuevo en sprinte actual; integración con romcal confirma disponibilidad de datos completos
 
 ---
 
@@ -345,6 +359,19 @@ La arquitectura usa CSS Custom Properties mapeadas directamente desde design tok
 | **Click en día** | Navega a `/#/:date` |
 | **Colores** | Días con festividades llevan color de temporada |
 
+### 6.7 YearView
+
+| Aspecto | Especificación |
+|---|---|
+| **Responsabilidad** | Lista compacta de todos los días del año |
+| **Props** | `{ year }` (seleccionable) |
+| **Render** | Tabla semántica: 4 columnas (color ●, DD MM, temporada, nombre) × 365/366 filas |
+| **Selector de año** | Dropdown: [year-4 ... year+4], default=currentYear |
+| **Fuente de datos** | `romcal.calendarForYear(year)` → itera todos los días |
+| **Interacción** | Click en fila navega a `/#/:date` |
+| **Estilos** | Diseño denso; texto pequeño (sans 14px); color ● según `dayColor` |
+| **Accesibilidad** | Tabla con headers semánticos, selector con label, filas focusables |
+
 ---
 
 ## 7. Criterios de Éxito & Verificación
@@ -401,6 +428,7 @@ La arquitectura usa CSS Custom Properties mapeadas directamente desde design tok
 6. `HourView` con navegación Anterior/Siguiente
 7. Audio: `useAudio` hook + `AudioPlayer` controles
 8. CalendarView básico
+9. YearView con selector de año
 
 ### Fase 3: Polish & Validation (1–2 días)
 
