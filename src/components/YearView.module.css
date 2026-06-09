@@ -1,0 +1,95 @@
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--spacing-md);
+  border-top: none;
+}
+
+.yearSelect {
+  padding-left: 4em;
+  padding-right: 4em;
+}
+
+.seasonNav {
+  padding: var(--spacing-md);
+  margin-top: var(--spacing-md);
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.h4Container {
+  margin-top: var(--spacing-lg);
+}
+
+.seasonSection {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.periodTitle {
+  font-size: 1.05rem;
+  margin: var(--spacing-lg) 0 var(--spacing-md) 0;
+  margin-left: var(--spacing-md);
+  color: var(--text-primary);
+  font-weight: 500;
+  border-left: 3px solid var(--accent-color);
+  padding-left: var(--spacing-md);
+}
+
+.daysList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.dayItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm);
+  min-height: var(--touch-target-min);
+}
+
+.dateText {
+  font-weight: 600;
+  width: 70px;
+  flex-shrink: 0;
+}
+
+.nameText {
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: var(--spacing-sm);
+  }
+
+  .seasonTitle {
+    font-size: 1.1rem;
+    margin: var(--spacing-md) 0 var(--spacing-sm) 0;
+  }
+
+  .dayItem {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.95rem;
+  }
+
+  .dateText {
+    width: 65px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .seasonTitle {
+    font-size: 1rem;
+    margin: var(--spacing-md) 0 var(--spacing-xs) 0;
+  }
+
+  .dayItem {
+    padding: 8px var(--spacing-sm);
+    gap: var(--spacing-sm);
+  }
+}

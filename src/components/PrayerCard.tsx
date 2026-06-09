@@ -67,9 +67,9 @@ export default function PrayerCard({ card }: PrayerCardProps) {
 
   return (
     <article className={styles.card}>
-      <div className={styles.header}>
-        <h3 className={styles.title}>✦ {card.title}</h3>
-        <span className={styles.titleLine}></span>
+      <div className='h4Container'>
+        <h4>{card.title}</h4>
+        <span></span>
         <div className={styles.infoContainer} ref={tooltipRef}>
           <button
             className={styles.infoIcon}

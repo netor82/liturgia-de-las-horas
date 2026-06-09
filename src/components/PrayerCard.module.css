@@ -2,27 +2,6 @@
   padding: var(--card-padding);
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.title {
-  font-family: var(--font-hd);
-  font-size: calc(var(--base-font-size) - 3px);
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  color: var(--text-inverse);
-  text-transform: uppercase;
-}
-
-.titleLine {
-  flex: 1; height: 1px;
-  background: linear-gradient(to right, var(--warm-gray-mid) 60%, transparent);
-  margin-left: var(--spacing-sm);
-}
-
 .infoContainer {
   position: relative;
 }

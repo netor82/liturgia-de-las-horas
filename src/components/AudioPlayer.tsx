@@ -84,7 +84,6 @@ export default function AudioPlayer({ text, onCardChange }: AudioPlayerProps) {
             id="speed-select"
             value={currentSpeed}
             onChange={handleSpeedChange}
-            className={styles.speedSelect}
             aria-label="Velocidad de reproducción de audio"
             title="Selecciona la velocidad de reproducción (0.75x a 2x)"
           >

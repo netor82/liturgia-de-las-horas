@@ -16,15 +16,11 @@ export default function SettingsView() {
 
   return (
     <main className={styles.container}>
-      <div className={styles.header}>
-        <h1>Configuración</h1>
-        <button
-          onClick={() => navigate('/')}
-          className={styles.backButton}
-          aria-label="Volver a inicio"
-        >
-          ← Volver
+      <div className='titleContainer'>
+        <button onClick={() => navigate(`/`)} className='backButton'>
+          ‹
         </button>
+        <h1 className='title'>Configuración</h1>
       </div>
 
       <div className={styles.content}>

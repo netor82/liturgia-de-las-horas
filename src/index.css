@@ -56,6 +56,15 @@
   /* Liturgical Season Color (default to Ordinary Time) */
   --accent-color: #007A33;
 
+  /* Liturgical Day Colors */
+  --color-red: #C8102E;
+  --color-rose: #F7C6C7;
+  --color-purple: #6A0DAD;
+  --color-green: #007A33;
+  --color-white: #FFFFFF;
+  --color-gold: #FFD700;
+  --color-black: #000000;
+
   /* Base font size for scaling */
   --base-font-size: 16px;
 }
@@ -85,35 +94,63 @@
 
 /* Liturgical Day Colors */
 :root[data-day-color="RED"] {
-  --accent-color: #C8102E;
+  --accent-color: var(--color-red);
 }
 
 :root[data-day-color="ROSE"] {
-  --accent-color: #F7C6C7;
+  --accent-color: var(--color-rose);
 }
 
 :root[data-day-color="PURPLE"] {
-  --accent-color: #6A0DAD;
+  --accent-color: var(--color-purple);
 }
 
 :root[data-day-color="GREEN"] {
-  --accent-color: #007A33;
+  --accent-color: var(--color-green);
 }
 
 :root[data-day-color="WHITE"] {
-  --accent-color: #FFFFFF;
+  --accent-color: var(--color-white);
 }
 
 :root[data-day-color="GOLD"] {
-  --accent-color: #FFD700;
+  --accent-color: var(--color-gold);
 }
 
 :root[data-day-color="BLACK"] {
-  --accent-color: #000000;
+  --accent-color: var(--color-black);
 }
 
 .dayColor {
   color: var(--accent-color);
+}
+
+.colorRed {
+  color: var(--color-red);
+}
+
+.colorRose {
+  color: var(--color-rose);
+}
+
+.colorPurple {
+  color: var(--color-purple);
+}
+
+.colorGreen {
+  color: var(--color-green);
+}
+
+.colorWhite {
+  color: var(--color-white);
+}
+
+.colorGold {
+  color: var(--color-gold);
+}
+
+.colorBlack {
+  color: var(--color-black);
 }
 
 /* Reset and Base Styles */
@@ -172,6 +209,29 @@ h3 {
   font-size: var(--heading-size-sm);
   font-weight: 600;
   color: var(--text-secondary);
+}
+
+h4 {
+  font-family: var(--font-hd);
+  font-size: calc(var(--base-font-size) - 3px);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--text-inverse);
+  text-transform: uppercase;
+}
+.h4Container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+h4::before {
+  content: '✦ ';
+}
+h4+span{
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--warm-gray-mid) 60%, transparent);
+  margin-left: var(--spacing-sm);
 }
 
 p {
@@ -247,8 +307,50 @@ html {
 .font-xl {
   --base-font-size: 20px;
 }
+
 select {
+  padding: var(--spacing-sm);
+  border: 1px solid var(--warm-gray-mid);
+  background-color: var(--warm-gray-light);
+  border-radius: var(--border-radius);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-family: inherit;
   font-size: inherit;
+}
+
+select:hover:not(:disabled) {
+  box-shadow: var(--shadow);
+  background-color: var(--warm-gray-mid);
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.titleContainer .title {
+  flex: 1
+}
+
+.titleContainer .backButton {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-family: var(--font-bd);
+  font-size: 1.8em;
+  color: var(--text-inverse);
+  margin-left: -16px;
+}
+
+.titleContainer .backButton:hover {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.titleContainer .backButton:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
 }
 
 .home-rule {

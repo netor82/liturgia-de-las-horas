@@ -99,11 +99,11 @@ export default function HourView() {
   return (
     <main className={styles.container}>
 
-      <div className={styles.cardContainer}>
-        <button onClick={() => navigate(`/${date}`)} className={styles.backButton}>
+      <div className='titleContainer'>
+        <button onClick={() => navigate(`/${date}`)} className='backButton'>
           ‹
         </button>
-        <div className={styles.title}>
+        <div className='title'>
           <h2><span className="dayColor">●</span> Laudes</h2>
           <h3>Oración de la mañana</h3>
         </div>

@@ -73,16 +73,23 @@ export default function HourSelector() {
           <button
             className={styles.navButton}
             onClick={() => navigate('/calendario')}
+            aria-label="Seleccionar fecha"
+          >
+            ⊞ Seleccionar día
+          </button>
+          <button
+            className={styles.navButton}
+            onClick={() => navigate('/anno')}
             aria-label="Ir al calendario litúrgico"
           >
-            ⊞ Calendario
+            ⊞ Calendario litúrgico
           </button>
           <button
             className={styles.navButton}
             onClick={() => navigate('/configuracion')}
             aria-label="Ir a configuración y accesibilidad"
           >
-            ⚙ Configuración
+            ⚙
           </button>
         </div>
       </nav>

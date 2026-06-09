@@ -21,15 +21,6 @@
   color: var(--text-secondary);
 }
 
-.title {
-  flex: 1;
-}
-
-.cardContainer {
-  display: flex;
-  justify-content: space-between;
-}
-
 .navigation {
   display: flex;
   align-items: center;
@@ -51,26 +42,6 @@
   padding-top: var(--spacing-md);
   border-top: 1px solid var(--warm-gray-light);
   gap: var(--spacing-md);
-}
-
-.backButton {
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  font-family: var(--font-bd);
-  font-size: 1.8em;
-  color: var(--text-inverse);
-  margin-left: -16px;
-}
-
-.backButton:hover {
-  background-color: transparent;
-  box-shadow: none;
-}
-
-.backButton:focus-visible {
-  outline: 2px solid var(--focus-ring);
-  outline-offset: 2px;
 }
 
 .srOnly {

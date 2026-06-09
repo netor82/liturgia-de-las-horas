@@ -34,16 +34,6 @@
   color: var(--text-secondary);
 }
 
-.speedSelect {
-  padding: var(--spacing-sm);
-  border: 1px solid var(--warm-gray-mid);
-  background-color: var(--warm-gray-light);
-  border-radius: var(--border-radius);
-  color: var(--text-secondary);
-  cursor: pointer;
-  font-family: inherit;
-}
-
 @media (max-width: 768px) {
   .container {
     gap: var(--spacing-sm);
